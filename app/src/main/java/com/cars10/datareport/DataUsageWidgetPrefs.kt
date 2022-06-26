@@ -8,6 +8,7 @@ private const val PREF_DATAPLAN_KEY = "widget_dataplan_"
 private const val PREF_DATAPLAN_UNIT_KEY = "widget_dataplan_unit_"
 private const val PREF_SHOW_RELOAD_KEY = "widget_show_reload_"
 private const val PREF_SHOW_UPDATED_AT_KEY = "widget_show_updated_at_"
+private const val PREF_FONT_SIZE_KEY = "widget_font_size"
 
 class DataUsageWidgetPrefs(private val context: Context, private val appWidgetId: Int) {
     fun dataPlan(): Int {
@@ -24,6 +25,10 @@ class DataUsageWidgetPrefs(private val context: Context, private val appWidgetId
 
     fun showUpdatedAt(): Boolean {
         return getBoolean(PREF_SHOW_UPDATED_AT_KEY, false)
+    }
+
+    fun fontSize(): Int {
+        return getInt(PREF_FONT_SIZE_KEY, 3)
     }
 
     private fun getPrefs(): SharedPreferences {
@@ -60,13 +65,15 @@ internal fun saveWidgetPrefs(
     dataPlan: Int,
     dataPlanUnit: String,
     showReloadButton: Boolean,
-    showUpdatedAtSetting: Boolean
+    showUpdatedAt: Boolean,
+    fontSize: Int
 ) {
     val prefs = context.getSharedPreferences(PREFS_NAME, 0).edit()
     prefs.putInt(PREF_DATAPLAN_KEY + appWidgetId, dataPlan)
     prefs.putString(PREF_DATAPLAN_UNIT_KEY + appWidgetId, dataPlanUnit)
     prefs.putBoolean(PREF_SHOW_RELOAD_KEY + appWidgetId, showReloadButton)
-    prefs.putBoolean(PREF_SHOW_UPDATED_AT_KEY + appWidgetId, showUpdatedAtSetting)
+    prefs.putBoolean(PREF_SHOW_UPDATED_AT_KEY + appWidgetId, showUpdatedAt)
+    prefs.putInt(PREF_FONT_SIZE_KEY + appWidgetId, fontSize)
     prefs.apply()
 }
 

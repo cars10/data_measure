@@ -5,10 +5,7 @@ import android.appwidget.AppWidgetManager
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import android.widget.ArrayAdapter
-import android.widget.EditText
-import android.widget.Spinner
-import android.widget.Switch
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.cars10.datareport.databinding.BarChartWidgetConfigureBinding
 
@@ -22,6 +19,7 @@ class BarChartWidgetConfigureActivity : AppCompatActivity() {
     private lateinit var dataPlanUnitSpinner: Spinner
     private lateinit var showReloadButtonSwitch: Switch
     private lateinit var showUpdatedAtSwitch: Switch
+    private lateinit var fontSizeSeekBar: SeekBar
 
     private var createWidget = View.OnClickListener {
         val context = this@BarChartWidgetConfigureActivity
@@ -30,13 +28,16 @@ class BarChartWidgetConfigureActivity : AppCompatActivity() {
         val dataPlanUnit = dataPlanUnitSpinner.selectedItem.toString()
         val showReloadButton = showReloadButtonSwitch.isChecked()
         val showUpdatedAt = showUpdatedAtSwitch.isChecked()
+        val fontSize = fontSizeSeekBar.getProgress()
+
         saveWidgetPrefs(
             context,
             appWidgetId,
             dataPlan,
             dataPlanUnit,
             showReloadButton,
-            showUpdatedAt
+            showUpdatedAt,
+            fontSize
         )
 
         val appWidgetManager = AppWidgetManager.getInstance(context)
@@ -64,6 +65,8 @@ class BarChartWidgetConfigureActivity : AppCompatActivity() {
         dataPlanUnitSpinner = binding.spinner
         showReloadButtonSwitch = binding.showReloadButton
         showUpdatedAtSwitch = binding.showUpdatedAt
+        fontSizeSeekBar = binding.fontSize
+
         binding.saveButton.setOnClickListener(createWidget)
 
         // Find the widget id from the intent.
@@ -85,7 +88,7 @@ class BarChartWidgetConfigureActivity : AppCompatActivity() {
         dataPlanEditText.setText(widgetPrefs.dataPlan().toString())
         showReloadButtonSwitch.setChecked(widgetPrefs.showReload())
         showUpdatedAtSwitch.setChecked(widgetPrefs.showUpdatedAt())
-
+        fontSizeSeekBar.setProgress(widgetPrefs.fontSize())
 
         // DO THE SPINNING
         val adapter = ArrayAdapter.createFromResource(

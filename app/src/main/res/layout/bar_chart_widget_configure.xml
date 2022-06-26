@@ -35,13 +35,11 @@
             android:layout_alignParentBottom="false" />
     </RelativeLayout>
 
-
     <Space
         android:layout_width="match_parent"
         android:layout_height="16dp" />
 
     <TextView
-        android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/settings" />
@@ -64,6 +62,29 @@
         android:autofillHints="qwe"
         android:text="@string/show_updated_at"
         tools:ignore="UseSwitchCompatOrMaterialXml" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/data_usage_font_size" />
+
+        <SeekBar
+            android:id="@+id/font_size"
+            style="@style/Widget.AppCompat.SeekBar.Discrete"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:max="8"
+            android:min="0"
+            android:progress="3" />
+    </LinearLayout>
 
 
     <Button

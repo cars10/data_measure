@@ -6,6 +6,7 @@ import android.appwidget.AppWidgetProvider
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.TypedValue
 import android.view.View
 import android.widget.RemoteViews
 import android.widget.Toast
@@ -81,6 +82,11 @@ internal fun updateAppWidget(
     val totalUsage = NetworkUsage().summaryCurrentMonth(context)
     val str = ByteFormatter().humanReadableByteCountBin(totalUsage)
     views.setTextViewText(R.id.appwidget_text, str)
+    views.setTextViewTextSize(
+        R.id.appwidget_text,
+        TypedValue.COMPLEX_UNIT_SP,
+        widgetPrefs.fontSize().toFloat() * 6
+    )
 
     var progressValue = dataPlan
     if (dataPlanUnit == "GB") progressValue *= 1000
