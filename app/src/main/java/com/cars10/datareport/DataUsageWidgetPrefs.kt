@@ -35,7 +35,7 @@ class DataUsageWidgetPrefs(private val context: Context, private val appWidgetId
     }
 
     fun backgroundColor(): Int {
-        return getInt(PREF_BACKGROUND_COLOR_KEY, Color.parseColor("#34454d"))
+        return getInt(PREF_BACKGROUND_COLOR_KEY, Color.parseColor("#DD34454d"))
     }
 
     fun textColor(): Int {
