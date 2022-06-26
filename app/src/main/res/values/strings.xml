@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">Data report</string>
+    <string name="bar_chart_widget">Bar chart</string>
     <string name="button">Grant permissions</string>
     <string name="permissions_not_granted">Permissions not granted</string>
     <string name="permissions_granted">Permissions granted!</string>
