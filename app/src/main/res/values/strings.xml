@@ -19,7 +19,7 @@
     </string-array>
     <string name="configure">Configure</string>
     <string name="add_widget">Add widget</string>
-    <string name="show_reload_button">Show reload button</string>
+    <string name="show_reload_button">Enable reload button</string>
     <string name="show_updated_at">Show last update</string>
     <string name="settings">Widget settings</string>
 </resources>

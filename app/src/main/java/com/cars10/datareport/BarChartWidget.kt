@@ -6,6 +6,7 @@ import android.appwidget.AppWidgetProvider
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.RemoteViews
 import android.widget.Toast
 import java.text.DateFormat
@@ -85,10 +86,17 @@ internal fun updateAppWidget(
     if (dataPlanUnit == "GB") progressValue *= 1000
     views.setProgressBar(R.id.progressBar, progressValue, (totalUsage / 1000 / 1000).toInt(), false)
 
-    views.setOnClickPendingIntent(R.id.update, triggerReload(context, appWidgetId))
+    if (widgetPrefs.showReload()) {
+        views.setViewVisibility(R.id.reload_button, View.VISIBLE)
+        views.setOnClickPendingIntent(R.id.reload_button, triggerReload(context, appWidgetId))
+    }
+
+    if (widgetPrefs.showUpdatedAt()) {
+        views.setViewVisibility(R.id.updated_at, View.VISIBLE)
+    }
 
     val timeString = DateFormat.getTimeInstance(DateFormat.MEDIUM).format(Date())
-    views.setTextViewText(R.id.update_value, timeString)
+    views.setTextViewText(R.id.updated_at, timeString)
 
     val intent = Intent(context, BarChartWidgetConfigureActivity::class.java)
     intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId)

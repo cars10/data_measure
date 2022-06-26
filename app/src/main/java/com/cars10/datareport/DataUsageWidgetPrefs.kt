@@ -58,11 +58,15 @@ internal fun saveWidgetPrefs(
     context: Context,
     appWidgetId: Int,
     dataPlan: Int,
-    dataPlanUnit: String
+    dataPlanUnit: String,
+    showReloadButton: Boolean,
+    showUpdatedAtSetting: Boolean
 ) {
     val prefs = context.getSharedPreferences(PREFS_NAME, 0).edit()
     prefs.putInt(PREF_DATAPLAN_KEY + appWidgetId, dataPlan)
     prefs.putString(PREF_DATAPLAN_UNIT_KEY + appWidgetId, dataPlanUnit)
+    prefs.putBoolean(PREF_SHOW_RELOAD_KEY + appWidgetId, showReloadButton)
+    prefs.putBoolean(PREF_SHOW_UPDATED_AT_KEY + appWidgetId, showUpdatedAtSetting)
     prefs.apply()
 }
 

@@ -26,7 +26,7 @@
                 android:textSize="28sp" />
 
             <ImageView
-                android:id="@+id/update"
+                android:id="@+id/reload_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignTop="@id/appwidget_text"
@@ -39,8 +39,8 @@
                 android:focusable="true"
                 android:minWidth="28sp"
                 android:minHeight="28sp"
-                android:visibility="gone"
                 android:src="@android:drawable/stat_notify_sync"
+                android:visibility="gone"
                 app:srcCompat="@android:drawable/stat_notify_sync" />
         </RelativeLayout>
 
@@ -60,7 +60,7 @@
             android:layout_below="@id/progressBar">
 
             <TextView
-                android:id="@+id/update_value"
+                android:id="@+id/updated_at"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/last_updated"
