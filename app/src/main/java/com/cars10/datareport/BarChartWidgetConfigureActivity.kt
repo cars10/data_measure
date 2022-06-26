@@ -18,25 +18,25 @@ import com.cars10.datareport.databinding.BarChartWidgetConfigureBinding
 @SuppressLint("UseSwitchCompatOrMaterialCode")
 class BarChartWidgetConfigureActivity : AppCompatActivity() {
     private var appWidgetId = AppWidgetManager.INVALID_APPWIDGET_ID
-    private lateinit var dataPlanText: EditText
-    private lateinit var dataPlanUnit: Spinner
-    private lateinit var showReloadButton: Switch
-    private lateinit var showUpdatedAt: Switch
+    private lateinit var dataPlanEditText: EditText
+    private lateinit var dataPlanUnitSpinner: Spinner
+    private lateinit var showReloadButtonSwitch: Switch
+    private lateinit var showUpdatedAtSwitch: Switch
 
     private var createWidget = View.OnClickListener {
         val context = this@BarChartWidgetConfigureActivity
 
-        val dataPlan = dataPlanText.text.toString().toInt()
-        val dataPlanUnit = dataPlanUnit.selectedItem.toString()
-        val showReloadButtonSetting = showReloadButton.isChecked()
-        val showUpdatedAtSetting = showUpdatedAt.isChecked()
+        val dataPlan = dataPlanEditText.text.toString().toInt()
+        val dataPlanUnit = dataPlanUnitSpinner.selectedItem.toString()
+        val showReloadButton = showReloadButtonSwitch.isChecked()
+        val showUpdatedAt = showUpdatedAtSwitch.isChecked()
         saveWidgetPrefs(
             context,
             appWidgetId,
             dataPlan,
             dataPlanUnit,
-            showReloadButtonSetting,
-            showUpdatedAtSetting
+            showReloadButton,
+            showUpdatedAt
         )
 
         val appWidgetManager = AppWidgetManager.getInstance(context)
@@ -60,10 +60,10 @@ class BarChartWidgetConfigureActivity : AppCompatActivity() {
         binding = BarChartWidgetConfigureBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        dataPlanText = binding.dataPlan
-        dataPlanUnit = binding.spinner
-        showReloadButton = binding.showReloadButton
-        showUpdatedAt = binding.showUpdatedAt
+        dataPlanEditText = binding.dataPlan
+        dataPlanUnitSpinner = binding.spinner
+        showReloadButtonSwitch = binding.showReloadButton
+        showUpdatedAtSwitch = binding.showUpdatedAt
         binding.saveButton.setOnClickListener(createWidget)
 
         // Find the widget id from the intent.
@@ -82,25 +82,21 @@ class BarChartWidgetConfigureActivity : AppCompatActivity() {
         }
 
         val widgetPrefs = DataUsageWidgetPrefs(this@BarChartWidgetConfigureActivity, appWidgetId)
-        dataPlanText.setText(widgetPrefs.dataPlan().toString())
-        showReloadButton.setChecked(widgetPrefs.showReload())
-        showUpdatedAt.setChecked(widgetPrefs.showUpdatedAt())
+        dataPlanEditText.setText(widgetPrefs.dataPlan().toString())
+        showReloadButtonSwitch.setChecked(widgetPrefs.showReload())
+        showUpdatedAtSwitch.setChecked(widgetPrefs.showUpdatedAt())
 
 
         // DO THE SPINNING
-        val spinner: Spinner = findViewById(R.id.spinner)
-        // Create an ArrayAdapter using the string array and a default spinner layout
         val adapter = ArrayAdapter.createFromResource(
             this,
             R.array.data_plan_sizes,
             android.R.layout.simple_spinner_item
         )
-        // Specify the layout to use when the list of choices appears
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        // Apply the adapter to the spinner
-        spinner.adapter = adapter
+        dataPlanUnitSpinner.adapter = adapter
 
         val position = adapter.getPosition(widgetPrefs.dataPlanUnit())
-        spinner.setSelection(position)
+        dataPlanUnitSpinner.setSelection(position)
     }
 }

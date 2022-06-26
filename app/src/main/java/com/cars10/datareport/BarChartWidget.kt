@@ -89,10 +89,14 @@ internal fun updateAppWidget(
     if (widgetPrefs.showReload()) {
         views.setViewVisibility(R.id.reload_button, View.VISIBLE)
         views.setOnClickPendingIntent(R.id.reload_button, triggerReload(context, appWidgetId))
+    } else {
+        views.setViewVisibility(R.id.reload_button, View.GONE)
     }
 
     if (widgetPrefs.showUpdatedAt()) {
         views.setViewVisibility(R.id.updated_at, View.VISIBLE)
+    } else {
+        views.setViewVisibility(R.id.updated_at, View.GONE)
     }
 
     val timeString = DateFormat.getTimeInstance(DateFormat.MEDIUM).format(Date())
