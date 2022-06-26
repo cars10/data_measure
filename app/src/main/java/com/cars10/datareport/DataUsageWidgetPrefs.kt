@@ -39,7 +39,7 @@ class DataUsageWidgetPrefs(private val context: Context, private val appWidgetId
     }
 
     fun textColor(): Int {
-        return getInt(PREF_TEXT_COLOR_KEY, Color.parseColor("#3db2de"))
+        return getInt(PREF_TEXT_COLOR_KEY, Color.parseColor("#3DCADE"))
     }
 
     private fun getPrefs(): SharedPreferences {
