@@ -6,6 +6,8 @@ import android.content.SharedPreferences
 private const val PREFS_NAME = "com.example.datausagewidget.DataUsageWidget"
 private const val PREF_DATAPLAN_KEY = "widget_dataplan_"
 private const val PREF_DATAPLAN_UNIT_KEY = "widget_dataplan_unit_"
+private const val PREF_SHOW_RELOAD_KEY = "widget_show_reload_"
+private const val PREF_SHOW_UPDATED_AT_KEY = "widget_show_updated_at_"
 
 class DataUsageWidgetPrefs(private val context: Context, private val appWidgetId: Int) {
     fun dataPlan(): Int {
@@ -14,6 +16,14 @@ class DataUsageWidgetPrefs(private val context: Context, private val appWidgetId
 
     fun dataPlanUnit(): String {
         return getString(PREF_DATAPLAN_UNIT_KEY, "MB")
+    }
+
+    fun showReload(): Boolean {
+        return getBoolean(PREF_SHOW_RELOAD_KEY, false)
+    }
+
+    fun showUpdatedAt(): Boolean {
+        return getBoolean(PREF_SHOW_UPDATED_AT_KEY, false)
     }
 
     private fun getPrefs(): SharedPreferences {
@@ -30,6 +40,10 @@ class DataUsageWidgetPrefs(private val context: Context, private val appWidgetId
 
     private fun getInt(key: String, default: Int): Int {
         return getPrefs().getInt(key + appWidgetId, default)
+    }
+
+    private fun getBoolean(key: String, default: Boolean): Boolean {
+        return getPrefs().getBoolean(key + appWidgetId, default)
     }
 
     fun delete(key: String) {
