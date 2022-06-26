@@ -104,6 +104,10 @@ internal fun updateAppWidget(
     } else {
         views.setViewVisibility(R.id.updated_at, View.GONE)
     }
+    views.setInt(
+        R.id.widget_inner_layout, "setBackgroundColor", widgetPrefs.backgroundColor()
+    )
+    views.setTextColor(R.id.appwidget_text, widgetPrefs.textColor())
 
     val timeString = DateFormat.getTimeInstance(DateFormat.MEDIUM).format(Date())
     views.setTextViewText(R.id.updated_at, timeString)

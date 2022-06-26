@@ -23,4 +23,6 @@
     <string name="show_updated_at">Show last update</string>
     <string name="settings">Widget settings</string>
     <string name="data_usage_font_size">Font size</string>
+    <string name="set_background_color">Set background color</string>
+    <string name="set_text_color">Set text color</string>
 </resources>

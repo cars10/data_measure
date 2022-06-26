@@ -8,6 +8,7 @@
     android:theme="@style/Theme.DataReport.AppWidgetContainer">
 
     <RelativeLayout
+        android:id="@+id/widget_inner_layout"
         style="@style/Widget.DataReport.AppWidget.InnerView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -52,7 +53,7 @@
             android:layout_below="@id/information_wrapper"
             android:layout_alignStart="@id/information_wrapper"
             android:layout_alignEnd="@id/information_wrapper"
-            android:scaleY="2" />
+            android:scaleY="1.2" />
 
         <RelativeLayout
             android:layout_width="wrap_content"

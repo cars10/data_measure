@@ -3,11 +3,14 @@ package com.cars10.datareport
 import android.annotation.SuppressLint
 import android.appwidget.AppWidgetManager
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.cars10.datareport.databinding.BarChartWidgetConfigureBinding
+import vadiole.colorpicker.ColorModel
+import vadiole.colorpicker.ColorPickerDialog
 
 /**
  * The configuration screen for the [BarChartWidget] AppWidget.
@@ -20,6 +23,8 @@ class BarChartWidgetConfigureActivity : AppCompatActivity() {
     private lateinit var showReloadButtonSwitch: Switch
     private lateinit var showUpdatedAtSwitch: Switch
     private lateinit var fontSizeSeekBar: SeekBar
+    private lateinit var choseBackgroundColorButton: Button
+    private lateinit var choseTextColorButton: Button
 
     private var createWidget = View.OnClickListener {
         val context = this@BarChartWidgetConfigureActivity
@@ -29,6 +34,8 @@ class BarChartWidgetConfigureActivity : AppCompatActivity() {
         val showReloadButton = showReloadButtonSwitch.isChecked()
         val showUpdatedAt = showUpdatedAtSwitch.isChecked()
         val fontSize = fontSizeSeekBar.getProgress()
+        val backgroundColor = Color.parseColor("#" + choseBackgroundColorButton.text)
+        val textColor = Color.parseColor("#" + choseTextColorButton.text)
 
         saveWidgetPrefs(
             context,
@@ -37,7 +44,9 @@ class BarChartWidgetConfigureActivity : AppCompatActivity() {
             dataPlanUnit,
             showReloadButton,
             showUpdatedAt,
-            fontSize
+            fontSize,
+            backgroundColor,
+            textColor
         )
 
         val appWidgetManager = AppWidgetManager.getInstance(context)
@@ -61,12 +70,6 @@ class BarChartWidgetConfigureActivity : AppCompatActivity() {
         binding = BarChartWidgetConfigureBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        dataPlanEditText = binding.dataPlan
-        dataPlanUnitSpinner = binding.spinner
-        showReloadButtonSwitch = binding.showReloadButton
-        showUpdatedAtSwitch = binding.showUpdatedAt
-        fontSizeSeekBar = binding.fontSize
-
         binding.saveButton.setOnClickListener(createWidget)
 
         // Find the widget id from the intent.
@@ -85,10 +88,53 @@ class BarChartWidgetConfigureActivity : AppCompatActivity() {
         }
 
         val widgetPrefs = DataUsageWidgetPrefs(this@BarChartWidgetConfigureActivity, appWidgetId)
+
+        dataPlanEditText = binding.dataPlan
+        dataPlanUnitSpinner = binding.spinner
+        showReloadButtonSwitch = binding.showReloadButton
+        showUpdatedAtSwitch = binding.showUpdatedAt
+        fontSizeSeekBar = binding.fontSize
+        choseBackgroundColorButton = binding.choseBackgroundColor
+        choseTextColorButton = binding.choseTextColor
+
         dataPlanEditText.setText(widgetPrefs.dataPlan().toString())
         showReloadButtonSwitch.setChecked(widgetPrefs.showReload())
         showUpdatedAtSwitch.setChecked(widgetPrefs.showUpdatedAt())
         fontSizeSeekBar.setProgress(widgetPrefs.fontSize())
+        choseBackgroundColorButton.setBackgroundColor(widgetPrefs.backgroundColor())
+        choseBackgroundColorButton.setText(Integer.toHexString(widgetPrefs.backgroundColor()))
+        choseTextColorButton.setBackgroundColor(widgetPrefs.textColor())
+        choseTextColorButton.setText(Integer.toHexString(widgetPrefs.textColor()))
+
+        choseBackgroundColorButton.setOnClickListener {
+            val colorPicker: ColorPickerDialog = ColorPickerDialog.Builder()
+                .setInitialColor(widgetPrefs.backgroundColor())
+                .setColorModel(ColorModel.ARGB)
+                .setColorModelSwitchEnabled(true)
+                .setButtonOkText(android.R.string.ok)
+                .setButtonCancelText(android.R.string.cancel)
+                .onColorSelected { color: Int ->
+                    choseBackgroundColorButton.setBackgroundColor(color)
+                    choseBackgroundColorButton.setText(Integer.toHexString(color))
+                }
+                .create()
+            colorPicker.show(supportFragmentManager, "color_picker")
+        }
+
+        choseTextColorButton.setOnClickListener {
+            val colorPicker: ColorPickerDialog = ColorPickerDialog.Builder()
+                .setInitialColor(widgetPrefs.textColor())
+                .setColorModel(ColorModel.ARGB)
+                .setColorModelSwitchEnabled(true)
+                .setButtonOkText(android.R.string.ok)
+                .setButtonCancelText(android.R.string.cancel)
+                .onColorSelected { color: Int ->
+                    choseTextColorButton.setBackgroundColor(color)
+                    choseTextColorButton.setText(Integer.toHexString(color))
+                }
+                .create()
+            colorPicker.show(supportFragmentManager, "color_picker")
+        }
 
         // DO THE SPINNING
         val adapter = ArrayAdapter.createFromResource(

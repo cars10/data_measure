@@ -35,15 +35,6 @@
             android:layout_alignParentBottom="false" />
     </RelativeLayout>
 
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="16dp" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/settings" />
-
     <Switch
         android:id="@+id/show_reload_button"
         android:layout_width="match_parent"
@@ -63,29 +54,65 @@
         android:text="@string/show_updated_at"
         tools:ignore="UseSwitchCompatOrMaterialXml" />
 
-
-    <LinearLayout
+    <TextView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp">
+        android:layout_height="wrap_content"
+        android:text="@string/data_usage_font_size" />
+
+    <SeekBar
+        android:id="@+id/font_size"
+        style="@style/Widget.AppCompat.SeekBar.Discrete"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:max="8"
+        android:min="0"
+        android:progress="3" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="48dp">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/data_usage_font_size" />
+            android:layout_alignTop="@id/choseTextColor"
+            android:layout_alignBottom="@id/choseTextColor"
+            android:layout_alignParentTop="false"
+            android:layout_alignParentBottom="false"
+            android:gravity="center_vertical"
+            android:labelFor="@id/choseTextColor"
+            android:text="@string/set_text_color" />
 
-        <SeekBar
-            android:id="@+id/font_size"
-            style="@style/Widget.AppCompat.SeekBar.Discrete"
+        <Button
+            android:id="@+id/choseTextColor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="48dp">
+
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:max="8"
-            android:min="0"
-            android:progress="3" />
-    </LinearLayout>
+            android:layout_alignTop="@id/choseBackgroundColor"
+            android:layout_alignBottom="@id/choseBackgroundColor"
+            android:layout_alignParentTop="false"
+            android:layout_alignParentBottom="false"
+            android:gravity="center_vertical"
+            android:labelFor="@id/choseBackgroundColor"
+            android:text="@string/set_background_color" />
 
+        <Button
+            android:id="@+id/choseBackgroundColor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true" />
+    </RelativeLayout>
 
     <Button
         android:id="@+id/save_button"

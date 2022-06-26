@@ -2,13 +2,16 @@ package com.cars10.datareport
 
 import android.content.Context
 import android.content.SharedPreferences
+import android.graphics.Color
 
 private const val PREFS_NAME = "com.example.datausagewidget.DataUsageWidget"
 private const val PREF_DATAPLAN_KEY = "widget_dataplan_"
 private const val PREF_DATAPLAN_UNIT_KEY = "widget_dataplan_unit_"
 private const val PREF_SHOW_RELOAD_KEY = "widget_show_reload_"
 private const val PREF_SHOW_UPDATED_AT_KEY = "widget_show_updated_at_"
-private const val PREF_FONT_SIZE_KEY = "widget_font_size"
+private const val PREF_FONT_SIZE_KEY = "widget_font_size_"
+private const val PREF_BACKGROUND_COLOR_KEY = "widget_background_color_"
+private const val PREF_TEXT_COLOR_KEY = "widget_text_color_"
 
 class DataUsageWidgetPrefs(private val context: Context, private val appWidgetId: Int) {
     fun dataPlan(): Int {
@@ -28,7 +31,15 @@ class DataUsageWidgetPrefs(private val context: Context, private val appWidgetId
     }
 
     fun fontSize(): Int {
-        return getInt(PREF_FONT_SIZE_KEY, 3)
+        return getInt(PREF_FONT_SIZE_KEY, 2)
+    }
+
+    fun backgroundColor(): Int {
+        return getInt(PREF_BACKGROUND_COLOR_KEY, Color.parseColor("#34454d"))
+    }
+
+    fun textColor(): Int {
+        return getInt(PREF_TEXT_COLOR_KEY, Color.parseColor("#3db2de"))
     }
 
     private fun getPrefs(): SharedPreferences {
@@ -66,7 +77,9 @@ internal fun saveWidgetPrefs(
     dataPlanUnit: String,
     showReloadButton: Boolean,
     showUpdatedAt: Boolean,
-    fontSize: Int
+    fontSize: Int,
+    backgroundColor: Int,
+    textColor: Int
 ) {
     val prefs = context.getSharedPreferences(PREFS_NAME, 0).edit()
     prefs.putInt(PREF_DATAPLAN_KEY + appWidgetId, dataPlan)
@@ -74,6 +87,8 @@ internal fun saveWidgetPrefs(
     prefs.putBoolean(PREF_SHOW_RELOAD_KEY + appWidgetId, showReloadButton)
     prefs.putBoolean(PREF_SHOW_UPDATED_AT_KEY + appWidgetId, showUpdatedAt)
     prefs.putInt(PREF_FONT_SIZE_KEY + appWidgetId, fontSize)
+    prefs.putInt(PREF_BACKGROUND_COLOR_KEY + appWidgetId, backgroundColor)
+    prefs.putInt(PREF_TEXT_COLOR_KEY + appWidgetId, textColor)
     prefs.apply()
 }
 
