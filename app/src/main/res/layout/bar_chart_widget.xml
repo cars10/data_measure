@@ -24,7 +24,8 @@
                 android:layout_height="wrap_content"
                 android:contentDescription="@string/appwidget_text"
                 android:text="@string/zero_bytes"
-                android:textSize="28sp" />
+                android:textSize="28sp"
+                android:textStyle="bold" />
 
             <ImageView
                 android:id="@+id/reload_button"
