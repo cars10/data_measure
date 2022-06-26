@@ -16,4 +16,6 @@
         <item>MB</item>
         <item>GB</item>
     </string-array>
+    <string name="configure">Configure</string>
+    <string name="add_widget">Add widget</string>
 </resources>
