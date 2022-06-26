@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">Data report</string>
+    <string name="button">Grant permissions</string>
+    <string name="permissions_not_granted">Permissions not granted</string>
+    <string name="permissions_granted">Permissions granted!</string>
+    <string name="appwidget_text">500</string>
+    <string name="configure_data_plan">Data plan</string>
+    <string name="save_widget">Save widget</string>
+    <string name="app_widget_description">This is an app widget description</string>
+    <string name="reload">reload</string>
+    <string name="zero_bytes">0 B</string>
+    <string name="last_updated">last_updated</string>
+    <string name="data_plan_hint">0</string>
+    <string name="data_plan">data_plan</string>
+    <string-array name="data_plan_sizes">
+        <item>MB</item>
+        <item>GB</item>
+    </string-array>
+</resources>
