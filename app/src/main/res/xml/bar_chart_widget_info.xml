@@ -4,7 +4,7 @@
     android:description="@string/app_widget_description"
     android:initialKeyguardLayout="@layout/bar_chart_widget"
     android:initialLayout="@layout/bar_chart_widget"
-    android:minWidth="160dp"
+    android:minWidth="40dp"
     android:minHeight="40dp"
     android:previewImage="@drawable/example_appwidget_preview"
     android:resizeMode="horizontal|vertical"

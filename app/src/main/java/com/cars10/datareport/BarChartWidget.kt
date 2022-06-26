@@ -5,10 +5,12 @@ import android.appwidget.AppWidgetManager
 import android.appwidget.AppWidgetProvider
 import android.content.Context
 import android.content.Intent
+import android.os.Bundle
 import android.widget.RemoteViews
 import android.widget.Toast
 import java.text.DateFormat
 import java.util.*
+
 
 /**
  * Implementation of App Widget functionality.
@@ -40,6 +42,27 @@ class BarChartWidget : AppWidgetProvider() {
     override fun onDisabled(context: Context) {
         // Enter relevant functionality for when the last widget is disabled
     }
+
+    override fun onAppWidgetOptionsChanged(
+        context: Context,
+        appWidgetManager: AppWidgetManager,
+        appWidgetId: Int,
+        newOptions: Bundle
+    ) {
+        val updateViews = RemoteViews(context.packageName, R.layout.bar_chart_widget)
+        val msg = String.format(
+            Locale.getDefault(),
+            "[%d-%d] x [%d-%d]",
+            newOptions.getInt(AppWidgetManager.OPTION_APPWIDGET_MIN_WIDTH),
+            newOptions.getInt(AppWidgetManager.OPTION_APPWIDGET_MAX_WIDTH),
+            newOptions.getInt(AppWidgetManager.OPTION_APPWIDGET_MIN_HEIGHT),
+            newOptions.getInt(AppWidgetManager.OPTION_APPWIDGET_MAX_HEIGHT)
+        )
+
+//        Toast.makeText(context, msg, Toast.LENGTH_SHORT).show()
+
+        appWidgetManager.updateAppWidget(appWidgetId, updateViews)
+    }
 }
 
 internal fun updateAppWidget(
@@ -52,7 +75,6 @@ internal fun updateAppWidget(
     val dataPlanUnit = widgetPrefs.dataPlanUnit()
     // Construct the RemoteViews object
     val views = RemoteViews(context.packageName, R.layout.bar_chart_widget)
-    views.setTextViewText(R.id.saved_data_plan, dataPlan.toString() + dataPlanUnit)
     views.setTextViewText(R.id.appwidget_text, "")
 
     val totalUsage = NetworkUsage().summaryCurrentMonth(context)

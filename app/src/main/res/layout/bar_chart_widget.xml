@@ -4,16 +4,17 @@
     style="@style/Widget.DataReport.AppWidget.Container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:gravity="center"
     android:theme="@style/Theme.DataReport.AppWidgetContainer">
 
     <RelativeLayout
         style="@style/Widget.DataReport.AppWidget.InnerView"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <RelativeLayout
             android:id="@+id/information_wrapper"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <TextView
@@ -38,6 +39,7 @@
                 android:focusable="true"
                 android:minWidth="28sp"
                 android:minHeight="28sp"
+                android:visibility="gone"
                 android:src="@android:drawable/stat_notify_sync"
                 app:srcCompat="@android:drawable/stat_notify_sync" />
         </RelativeLayout>
@@ -45,9 +47,12 @@
         <ProgressBar
             android:id="@+id/progressBar"
             style="?android:attr/progressBarStyleHorizontal"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/information_wrapper" />
+            android:layout_below="@id/information_wrapper"
+            android:layout_alignStart="@id/information_wrapper"
+            android:layout_alignEnd="@id/information_wrapper"
+            android:scaleY="2" />
 
         <RelativeLayout
             android:layout_width="wrap_content"
@@ -55,17 +60,11 @@
             android:layout_below="@id/progressBar">
 
             <TextView
-                android:id="@+id/saved_data_plan"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/data_plan" />
-
-            <TextView
                 android:id="@+id/update_value"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:text="@string/last_updated" />
+                android:text="@string/last_updated"
+                android:visibility="gone" />
         </RelativeLayout>
     </RelativeLayout>
 </RelativeLayout>
