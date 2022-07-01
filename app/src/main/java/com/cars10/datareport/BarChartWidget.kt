@@ -116,7 +116,12 @@ internal fun updateAppWidget(
     intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId)
 
     val pendingIntent =
-        PendingIntent.getActivity(context, appWidgetId, intent, PendingIntent.FLAG_UPDATE_CURRENT)
+        PendingIntent.getActivity(
+            context,
+            appWidgetId,
+            intent,
+            PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT
+        )
     views.setOnClickPendingIntent(R.id.widget_layout, pendingIntent)
 
     appWidgetManager.updateAppWidget(appWidgetId, views)
@@ -130,6 +135,6 @@ fun triggerReload(context: Context, appWidgetId: Int): PendingIntent {
     Toast.makeText(context, "Widget has been updated! ", Toast.LENGTH_SHORT).show()
     return PendingIntent.getBroadcast(
         context, appWidgetId, intentUpdate,
-        PendingIntent.FLAG_UPDATE_CURRENT
+        PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT
     )
 }
