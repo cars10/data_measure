@@ -6,7 +6,7 @@
     <string name="permissions_granted">Permissions granted!</string>
     <string name="appwidget_text">500</string>
     <string name="configure_data_plan">Data plan</string>
-    <string name="save_widget">Save widget</string>
+    <string name="close_config">Close &amp; reload widget</string>
     <string name="app_widget_description">This is an app widget description</string>
     <string name="reload">reload</string>
     <string name="zero_bytes">0 B</string>
@@ -14,15 +14,16 @@
     <string name="data_plan_hint">0</string>
     <string name="data_plan">data_plan</string>
     <string-array name="data_plan_sizes">
+        <item>KB</item>
         <item>MB</item>
         <item>GB</item>
     </string-array>
     <string name="configure">Configure</string>
     <string name="add_widget">Add widget</string>
-    <string name="show_reload_button">Enable reload button</string>
+    <string name="show_reload_button">Show reload button</string>
     <string name="show_updated_at">Show last update</string>
     <string name="settings">Widget settings</string>
     <string name="data_usage_font_size">Font size</string>
-    <string name="set_background_color">Set background color</string>
-    <string name="set_text_color">Set text color</string>
+    <string name="background_color">Background color</string>
+    <string name="text_color">Text color</string>
 </resources>

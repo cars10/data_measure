@@ -37,14 +37,6 @@ class BarChartWidget : AppWidgetProvider() {
         }
     }
 
-    override fun onEnabled(context: Context) {
-        // Enter relevant functionality for when the first widget is created
-    }
-
-    override fun onDisabled(context: Context) {
-        // Enter relevant functionality for when the last widget is disabled
-    }
-
     override fun onAppWidgetOptionsChanged(
         context: Context,
         appWidgetManager: AppWidgetManager,
@@ -73,7 +65,7 @@ internal fun updateAppWidget(
     appWidgetId: Int
 ) {
     val widgetPrefs = DataUsageWidgetPrefs(context, appWidgetId)
-    val dataPlan = widgetPrefs.dataPlan()
+    val dataPlan = widgetPrefs.dataPlan().toInt()
     val dataPlanUnit = widgetPrefs.dataPlanUnit()
     // Construct the RemoteViews object
     val views = RemoteViews(context.packageName, R.layout.bar_chart_widget)
@@ -85,7 +77,7 @@ internal fun updateAppWidget(
     views.setTextViewTextSize(
         R.id.appwidget_text,
         TypedValue.COMPLEX_UNIT_SP,
-        widgetPrefs.fontSize().toFloat() * 6
+        widgetPrefs.fontSize().toFloat() * 5
     )
 
     var progressValue = dataPlan

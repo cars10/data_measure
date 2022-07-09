@@ -1,124 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:padding="16dp">
+    android:orientation="vertical">
 
-    <RelativeLayout
-        android:id="@+id/data_plan_layout"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_height="match_parent">
 
-        <EditText
-            android:id="@+id/data_plan"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_toStartOf="@id/spinner"
-            android:hint="@string/configure_data_plan"
-            android:importantForAutofill="no"
-            android:inputType="number"
-            android:minHeight="48dp" />
-
-        <Spinner
-            android:id="@+id/spinner"
-            style="@android:style/Widget.Material.Spinner"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignTop="@id/data_plan"
-            android:layout_alignBottom="@id/data_plan"
-            android:layout_alignParentTop="false"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="false" />
-    </RelativeLayout>
-
-    <Switch
-        android:id="@+id/show_reload_button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:height="48dp"
-        android:autofillHints="qwe"
-        android:showText="false"
-        android:text="@string/show_reload_button"
-        tools:ignore="UseSwitchCompatOrMaterialXml" />
-
-    <Switch
-        android:id="@+id/show_updated_at"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:height="48dp"
-        android:autofillHints="qwe"
-        android:text="@string/show_updated_at"
-        tools:ignore="UseSwitchCompatOrMaterialXml" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/data_usage_font_size" />
-
-    <SeekBar
-        android:id="@+id/font_size"
-        style="@style/Widget.AppCompat.SeekBar.Discrete"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:max="8"
-        android:min="0"
-        android:progress="3" />
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="48dp">
-
-        <TextView
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignTop="@id/choseTextColor"
-            android:layout_alignBottom="@id/choseTextColor"
-            android:layout_alignParentTop="false"
-            android:layout_alignParentBottom="false"
-            android:gravity="center_vertical"
-            android:labelFor="@id/choseTextColor"
-            android:text="@string/set_text_color" />
+            android:orientation="vertical">
 
-        <Button
-            android:id="@+id/choseTextColor"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true" />
-    </RelativeLayout>
+            <androidx.fragment.app.FragmentContainerView
+                android:id="@+id/fragmentContainerView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minWidth="20dp"
+                android:minHeight="20dp" />
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="48dp">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignTop="@id/choseBackgroundColor"
-            android:layout_alignBottom="@id/choseBackgroundColor"
-            android:layout_alignParentTop="false"
-            android:layout_alignParentBottom="false"
-            android:gravity="center_vertical"
-            android:labelFor="@id/choseBackgroundColor"
-            android:text="@string/set_background_color" />
-
-        <Button
-            android:id="@+id/choseBackgroundColor"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true" />
-    </RelativeLayout>
-
-    <Button
-        android:id="@+id/save_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="@string/save_widget" />
-
+            <Button
+                android:id="@+id/save_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:text="@string/close_config" />
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>
