@@ -1,5 +1,6 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/widget_layout"
     style="@style/Widget.DataReport.AppWidget.Container"
     android:layout_width="match_parent"
@@ -25,7 +26,8 @@
                 android:contentDescription="@string/appwidget_text"
                 android:text="@string/zero_bytes"
                 android:textSize="28sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                tools:text="412 MB" />
 
             <ImageView
                 android:id="@+id/reload_button"
