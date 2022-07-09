@@ -16,7 +16,7 @@ class WidgetSettingsFragment() : PreferenceFragmentCompat() {
     }
 
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
-        preferenceManager.sharedPreferencesName = "widget_" + appWidgetId + "_settings"
+        preferenceManager.sharedPreferencesName = widgetPrefsName(appWidgetId)
 
         val context = preferenceManager.context
         val screen = preferenceManager.createPreferenceScreen(context)

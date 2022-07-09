@@ -13,27 +13,20 @@ import android.widget.Toast
 import java.text.DateFormat
 import java.util.*
 
-
-/**
- * Implementation of App Widget functionality.
- * App Widget Configuration implemented in [BarChartWidgetConfigureActivity]
- */
 class BarChartWidget : AppWidgetProvider() {
     override fun onUpdate(
         context: Context,
         appWidgetManager: AppWidgetManager,
         appWidgetIds: IntArray
     ) {
-        // There may be multiple widgets active, so update all of them
         for (appWidgetId in appWidgetIds) {
             updateAppWidget(context, appWidgetManager, appWidgetId)
         }
     }
 
     override fun onDeleted(context: Context, appWidgetIds: IntArray) {
-        // When the user deletes the widget, delete the preference associated with it.
         for (appWidgetId in appWidgetIds) {
-            deleteTitlePref(context, appWidgetId)
+            context.deleteSharedPreferences(widgetPrefsName(appWidgetId))
         }
     }
 

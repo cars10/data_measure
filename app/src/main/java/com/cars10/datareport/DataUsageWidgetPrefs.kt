@@ -65,32 +65,3 @@ class DataUsageWidgetPrefs(private val context: Context, private val appWidgetId
 fun widgetPrefsName(appWidgetId: Int): String {
     return "widget_" + appWidgetId.toString() + "_settings"
 }
-
-// Write the prefix to the SharedPreferences object for this widget
-internal fun saveWidgetPrefs(
-    context: Context,
-    appWidgetId: Int,
-    dataPlan: Int,
-    dataPlanUnit: String,
-    showReloadButton: Boolean,
-    showUpdatedAt: Boolean,
-    fontSize: Int,
-    backgroundColor: Int,
-    textColor: Int
-) {
-    val prefs = context.getSharedPreferences(widgetPrefsName(appWidgetId), 0).edit()
-    prefs.putInt(PREF_DATAPLAN_KEY, dataPlan)
-    prefs.putString(PREF_DATAPLAN_UNIT_KEY, dataPlanUnit)
-    prefs.putBoolean(PREF_SHOW_RELOAD_KEY, showReloadButton)
-    prefs.putBoolean(PREF_SHOW_UPDATED_AT_KEY, showUpdatedAt)
-    prefs.putInt(PREF_FONT_SIZE_KEY, fontSize)
-    prefs.putInt(PREF_BACKGROUND_COLOR_KEY, backgroundColor)
-    prefs.putInt(PREF_TEXT_COLOR_KEY, textColor)
-    prefs.apply()
-}
-
-internal fun deleteTitlePref(context: Context, appWidgetId: Int) {
-    val prefs = context.getSharedPreferences(widgetPrefsName(appWidgetId), 0).edit()
-    prefs.remove(PREF_DATAPLAN_KEY)
-    prefs.apply()
-}

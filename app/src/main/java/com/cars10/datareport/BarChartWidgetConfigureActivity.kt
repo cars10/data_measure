@@ -1,6 +1,5 @@
 package com.cars10.datareport
 
-import android.annotation.SuppressLint
 import android.appwidget.AppWidgetManager
 import android.content.Intent
 import android.os.Bundle
@@ -11,7 +10,6 @@ import com.cars10.datareport.databinding.BarChartWidgetConfigureBinding
 /**
  * The configuration screen for the [BarChartWidget] AppWidget.
  */
-@SuppressLint("UseSwitchCompatOrMaterialCode")
 class BarChartWidgetConfigureActivity : AppCompatActivity() {
     private var appWidgetId = AppWidgetManager.INVALID_APPWIDGET_ID
 
