@@ -52,7 +52,7 @@
             android:id="@+id/progressBar"
             style="?android:attr/progressBarStyleHorizontal"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="8dp"
             android:layout_below="@id/information_wrapper"
             android:layout_alignStart="@id/information_wrapper"
             android:layout_alignEnd="@id/information_wrapper"

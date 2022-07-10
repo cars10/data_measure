@@ -23,7 +23,7 @@ class ByteFormatter() {
         value *= signum(bytes).toLong()
         return format(
             Locale.getDefault(),
-            "%.2f %cB",
+            "%.1f %cB",
             value / 1024.0,
             ci.current()
         )
