@@ -9,7 +9,6 @@ import android.os.Bundle
 import android.util.TypedValue
 import android.view.View
 import android.widget.RemoteViews
-import android.widget.Toast
 import java.text.DateFormat
 import java.util.*
 
@@ -117,7 +116,6 @@ fun triggerReload(context: Context, appWidgetId: Int): PendingIntent {
     intentUpdate.action = AppWidgetManager.ACTION_APPWIDGET_UPDATE
     val idArray = intArrayOf(appWidgetId)
     intentUpdate.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, idArray)
-    Toast.makeText(context, "Widget has been updated! ", Toast.LENGTH_SHORT).show()
     return PendingIntent.getBroadcast(
         context, appWidgetId, intentUpdate,
         PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT
