@@ -11,10 +11,6 @@ import com.skydoves.colorpickerpreference.ColorPickerPreference
 class WidgetSettingsFragment() : PreferenceFragmentCompat() {
     var appWidgetId: Int = -1
 
-    constructor(widgetId: Int) : this() {
-        appWidgetId = widgetId
-    }
-
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         preferenceManager.sharedPreferencesName = widgetPrefsName(appWidgetId)
 

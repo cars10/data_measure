@@ -48,9 +48,11 @@ class BarChartWidgetConfigureActivity : AppCompatActivity() {
             )
         }
 
+        val widgetSettings = WidgetSettingsFragment()
+        widgetSettings.appWidgetId = appWidgetId
         supportFragmentManager
             .beginTransaction()
-            .replace(R.id.fragmentContainerView, WidgetSettingsFragment(appWidgetId))
+            .replace(R.id.fragmentContainerView, widgetSettings)
             .commit()
 
         // If this activity was started with an intent without an app widget ID, finish with an error.
