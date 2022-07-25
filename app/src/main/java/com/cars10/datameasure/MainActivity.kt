@@ -1,16 +1,16 @@
-package com.cars10.datareport
+package com.cars10.datameasure
 
 import android.app.AppOpsManager
 import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Process
 import android.provider.Settings
 import android.view.View
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

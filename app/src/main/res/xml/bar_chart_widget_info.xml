@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <appwidget-provider xmlns:android="http://schemas.android.com/apk/res/android"
-    android:configure="com.cars10.datareport.BarChartWidgetConfigureActivity"
+    android:configure="com.cars10.datameasure.BarChartWidgetConfigureActivity"
     android:description="@string/app_widget_description"
     android:initialKeyguardLayout="@layout/bar_chart_widget"
     android:initialLayout="@layout/bar_chart_widget"

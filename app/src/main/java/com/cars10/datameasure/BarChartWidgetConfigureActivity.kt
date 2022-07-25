@@ -1,11 +1,11 @@
-package com.cars10.datareport
+package com.cars10.datameasure
 
 import android.appwidget.AppWidgetManager
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import com.cars10.datareport.databinding.BarChartWidgetConfigureBinding
+import com.cars10.datameasure.databinding.BarChartWidgetConfigureBinding
 
 /**
  * The configuration screen for the [BarChartWidget] AppWidget.

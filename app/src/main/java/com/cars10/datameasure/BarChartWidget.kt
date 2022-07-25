@@ -1,4 +1,4 @@
-package com.cars10.datareport
+package com.cars10.datameasure
 
 import android.app.PendingIntent
 import android.appwidget.AppWidgetManager

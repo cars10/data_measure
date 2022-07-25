@@ -7,7 +7,7 @@ android {
     compileSdk 32
 
     defaultConfig {
-        applicationId "com.cars10.datareport"
+        applicationId "com.cars10.datameasure"
         minSdk 28
         targetSdk 32
         versionCode 1

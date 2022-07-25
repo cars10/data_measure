@@ -1,4 +1,4 @@
-package com.cars10.datareport
+package com.cars10.datameasure
 
 import java.lang.Long.signum
 import java.lang.String.format
