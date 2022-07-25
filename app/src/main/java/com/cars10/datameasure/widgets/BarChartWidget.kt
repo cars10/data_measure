@@ -1,4 +1,4 @@
-package com.cars10.datameasure
+package com.cars10.datameasure.widgets
 
 import android.app.PendingIntent
 import android.appwidget.AppWidgetManager
@@ -9,6 +9,7 @@ import android.os.Bundle
 import android.util.TypedValue
 import android.view.View
 import android.widget.RemoteViews
+import com.cars10.datameasure.*
 import java.text.DateFormat
 import java.util.*
 

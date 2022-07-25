@@ -5,10 +5,8 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.cars10.datameasure.databinding.BarChartWidgetConfigureBinding
+import com.cars10.datameasure.widgets.updateAppWidget
 
-/**
- * The configuration screen for the [BarChartWidget] AppWidget.
- */
 class BarChartWidgetConfigureActivity : AppCompatActivity() {
     private var appWidgetId = AppWidgetManager.INVALID_APPWIDGET_ID
     private lateinit var binding: BarChartWidgetConfigureBinding
