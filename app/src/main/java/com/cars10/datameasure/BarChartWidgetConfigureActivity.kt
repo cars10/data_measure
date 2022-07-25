@@ -3,7 +3,6 @@ package com.cars10.datameasure
 import android.appwidget.AppWidgetManager
 import android.content.Intent
 import android.os.Bundle
-import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.cars10.datameasure.databinding.BarChartWidgetConfigureBinding
 
@@ -12,8 +11,9 @@ import com.cars10.datameasure.databinding.BarChartWidgetConfigureBinding
  */
 class BarChartWidgetConfigureActivity : AppCompatActivity() {
     private var appWidgetId = AppWidgetManager.INVALID_APPWIDGET_ID
+    private lateinit var binding: BarChartWidgetConfigureBinding
 
-    private var createWidget = View.OnClickListener {
+    private fun saveWidget() {
         val context = this@BarChartWidgetConfigureActivity
 
         val appWidgetManager = AppWidgetManager.getInstance(context)
@@ -25,7 +25,6 @@ class BarChartWidgetConfigureActivity : AppCompatActivity() {
         setResult(RESULT_OK, resultValue)
         finish()
     }
-    private lateinit var binding: BarChartWidgetConfigureBinding
 
     public override fun onCreate(icicle: Bundle?) {
         super.onCreate(icicle)
@@ -37,7 +36,14 @@ class BarChartWidgetConfigureActivity : AppCompatActivity() {
         binding = BarChartWidgetConfigureBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.saveButton.setOnClickListener(createWidget)
+        binding.toolbar.apply {
+            setTitle(R.string.app_name)
+            inflateMenu(R.menu.bar_chart_widget_configure_menu)
+            setOnMenuItemClickListener { item ->
+                if (item.itemId == R.id.save) saveWidget()
+                true
+            }
+        }
 
         // Find the widget id from the intent.
         val intent = intent
