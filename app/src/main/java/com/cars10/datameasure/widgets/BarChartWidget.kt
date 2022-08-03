@@ -70,7 +70,7 @@ internal fun updateAppWidget(
     views.setTextViewTextSize(
         R.id.appwidget_text,
         TypedValue.COMPLEX_UNIT_SP,
-        widgetPrefs.fontSize().toFloat() * 5
+        widgetPrefs.fontSize().toFloat() * 2
     )
 
     var progressValue = dataPlan

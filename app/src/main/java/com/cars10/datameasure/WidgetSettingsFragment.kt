@@ -81,10 +81,10 @@ class WidgetSettingsFragment() : PreferenceFragmentCompat() {
             key = "font_size"
             title = "Font size"
             icon = AppCompatResources.getDrawable(context, R.drawable.ic_baseline_format_size_24)
-            min = 1
+            min = 4
             showSeekBarValue = true
-            max = 8
-            setDefaultValue(2)
+            max = 16
+            setDefaultValue(5)
         }
     }
 
