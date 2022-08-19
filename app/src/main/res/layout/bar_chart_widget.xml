@@ -3,20 +3,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/widget_layout"
     style="@style/Widget.DataMeasure.AppWidget.Container"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
     android:gravity="center"
-    android:theme="@style/Theme.DataMeasure.AppWidgetContainer">
+    android:theme="@style/Theme.DataMeasure.AppWidgetContainer"
+    tools:layout_width="300dp">
 
     <RelativeLayout
         android:id="@+id/widget_inner_layout"
         style="@style/Widget.DataMeasure.AppWidget.InnerView"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
         <RelativeLayout
             android:id="@+id/information_wrapper"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content">
 
             <TextView
@@ -32,20 +33,22 @@
             <ImageView
                 android:id="@+id/reload_button"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_alignTop="@id/appwidget_text"
                 android:layout_alignBottom="@id/appwidget_text"
                 android:layout_alignParentEnd="false"
-                android:layout_marginStart="16dp"
+                android:layout_marginStart="8dp"
                 android:layout_toEndOf="@id/appwidget_text"
+                android:background="?android:attr/selectableItemBackground"
                 android:clickable="true"
                 android:contentDescription="@string/reload"
                 android:focusable="true"
-                android:minWidth="28sp"
-                android:minHeight="28sp"
+                android:minWidth="0sp"
+                android:minHeight="0sp"
                 android:src="@android:drawable/stat_notify_sync"
                 android:visibility="gone"
-                app:srcCompat="@android:drawable/stat_notify_sync" />
+                app:srcCompat="@android:drawable/stat_notify_sync"
+                tools:visibility="visible" />
         </RelativeLayout>
 
         <ProgressBar
@@ -56,7 +59,8 @@
             android:layout_below="@id/information_wrapper"
             android:layout_alignStart="@id/information_wrapper"
             android:layout_alignEnd="@id/information_wrapper"
-            android:scaleY="1.2" />
+            android:scaleY="1.2"
+            tools:progress="25" />
 
         <RelativeLayout
             android:layout_width="wrap_content"

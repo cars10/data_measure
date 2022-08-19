@@ -84,7 +84,7 @@ class WidgetSettingsFragment() : PreferenceFragmentCompat() {
             min = 4
             showSeekBarValue = true
             max = 16
-            setDefaultValue(5)
+            setDefaultValue(6)
         }
     }
 
