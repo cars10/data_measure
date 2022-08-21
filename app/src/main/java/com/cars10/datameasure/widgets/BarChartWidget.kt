@@ -60,7 +60,6 @@ internal fun updateAppWidget(
     val widgetPrefs = DataUsageWidgetPrefs(context, appWidgetId)
     val dataPlan = widgetPrefs.dataPlan().toInt()
     val dataPlanUnit = widgetPrefs.dataPlanUnit()
-    // Construct the RemoteViews object
     val views = RemoteViews(context.packageName, R.layout.bar_chart_widget)
     views.setTextViewText(R.id.appwidget_text, "")
 

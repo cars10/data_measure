@@ -4,13 +4,14 @@ import android.content.Context
 import android.content.SharedPreferences
 import android.graphics.Color
 
-private const val PREF_DATAPLAN_KEY = "data_plan"
-private const val PREF_DATAPLAN_UNIT_KEY = "data_plan_unit"
-private const val PREF_SHOW_RELOAD_KEY = "show_reload_button"
-private const val PREF_SHOW_UPDATED_AT_KEY = "show_updated_at"
-private const val PREF_FONT_SIZE_KEY = "font_size"
-private const val PREF_TEXT_COLOR_KEY = "text_color"
-private const val PREF_BACKGROUND_COLOR_KEY = "background_color"
+const val PREF_DATAPLAN_KEY = "data_plan"
+const val PREF_DATAPLAN_UNIT_KEY = "data_plan_unit"
+const val PREF_SHOW_RELOAD_KEY = "show_reload_button"
+const val PREF_SHOW_UPDATED_AT_KEY = "show_updated_at"
+const val PREF_FONT_SIZE_KEY = "font_size"
+const val PREF_TEXT_COLOR_KEY = "text_color"
+const val PREF_BACKGROUND_COLOR_KEY = "background_color"
+const val PREF_FULL_WIDTH_KEY = "full_width"
 
 class DataUsageWidgetPrefs(private val context: Context, private val appWidgetId: Int) {
     fun dataPlan(): String {
@@ -41,12 +42,12 @@ class DataUsageWidgetPrefs(private val context: Context, private val appWidgetId
         return getInt(PREF_TEXT_COLOR_KEY, Color.parseColor("#3DCADE"))
     }
 
-    private fun getPrefs(): SharedPreferences {
-        return context.getSharedPreferences(widgetPrefsName(appWidgetId), 0)
+    fun fullWidth(): Boolean {
+        return getBoolean(PREF_FULL_WIDTH_KEY, false)
     }
 
-    private fun getPrefsEditable(): SharedPreferences.Editor {
-        return context.getSharedPreferences(widgetPrefsName(appWidgetId), 0).edit()
+    private fun getPrefs(): SharedPreferences {
+        return context.getSharedPreferences(widgetPrefsName(appWidgetId), 0)
     }
 
     private fun getString(key: String, default: String): String {

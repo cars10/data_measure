@@ -32,6 +32,7 @@ class WidgetSettingsFragment() : PreferenceFragmentCompat() {
         screen.addPreference(advancedSettingsCat)
         advancedSettingsCat.addPreference(buildShowReloadSwitchPref(context))
         advancedSettingsCat.addPreference(buildShowUpdatedSwitchPref(context))
+        advancedSettingsCat.addPreference(buildFullWidthSwitchPref(context))
 
         preferenceScreen = screen
     }
@@ -49,7 +50,7 @@ class WidgetSettingsFragment() : PreferenceFragmentCompat() {
 
     private fun buildDataPlanEditTextPref(context: Context): EditTextPreference {
         return EditTextPreference(context).apply {
-            key = "data_plan"
+            key = PREF_DATAPLAN_KEY
             title = "Monthly data"
             icon = AppCompatResources.getDrawable(context, R.drawable.ic_baseline_123_24)
             isSingleLineTitle = true
@@ -66,7 +67,7 @@ class WidgetSettingsFragment() : PreferenceFragmentCompat() {
 
     private fun buildDataPlanUnitListPref(context: Context): ListPreference {
         return ListPreference(context).apply {
-            key = "data_plan_unit"
+            key = PREF_DATAPLAN_UNIT_KEY
             title = "Set KB/MB/GB"
             icon = AppCompatResources.getDrawable(context, R.drawable.ic_baseline_list_alt_24)
             entryValues = context.resources.getStringArray(R.array.data_plan_sizes)
@@ -78,7 +79,7 @@ class WidgetSettingsFragment() : PreferenceFragmentCompat() {
 
     private fun buildFontSizeSeekBarPref(context: Context): SeekBarPreference {
         return SeekBarPreference(context).apply {
-            key = "font_size"
+            key = PREF_FONT_SIZE_KEY
             title = "Font size"
             icon = AppCompatResources.getDrawable(context, R.drawable.ic_baseline_format_size_24)
             min = 4
@@ -90,7 +91,7 @@ class WidgetSettingsFragment() : PreferenceFragmentCompat() {
 
     private fun buildTextColorPref(context: Context): ColorPickerPreference {
         return ColorPickerPreference(context).apply {
-            key = "text_color"
+            key = PREF_TEXT_COLOR_KEY
             title = context.getString(R.string.text_color)
             icon = AppCompatResources.getDrawable(context, R.drawable.ic_baseline_color_lens_24)
             attachAlphaSlideBar = true
@@ -105,7 +106,7 @@ class WidgetSettingsFragment() : PreferenceFragmentCompat() {
 
     private fun buildBackgroundColorPref(context: Context): ColorPickerPreference {
         return ColorPickerPreference(context).apply {
-            key = "background_color"
+            key = PREF_BACKGROUND_COLOR_KEY
             title = context.getString(R.string.background_color)
             icon = AppCompatResources.getDrawable(context, R.drawable.ic_baseline_color_lens_24)
             attachAlphaSlideBar = true
@@ -120,7 +121,7 @@ class WidgetSettingsFragment() : PreferenceFragmentCompat() {
 
     private fun buildShowReloadSwitchPref(context: Context): SwitchPreferenceCompat {
         return SwitchPreferenceCompat(context).apply {
-            key = "show_reload_button"
+            key = PREF_SHOW_RELOAD_KEY
             title = context.getString(R.string.show_reload_button)
             icon = AppCompatResources.getDrawable(context, R.drawable.ic_baseline_refresh_24)
             summary = "Will add a button to manually reload the widget."
@@ -129,10 +130,19 @@ class WidgetSettingsFragment() : PreferenceFragmentCompat() {
 
     private fun buildShowUpdatedSwitchPref(context: Context): SwitchPreferenceCompat {
         return SwitchPreferenceCompat(context).apply {
-            key = "show_updated_at"
+            key = PREF_SHOW_UPDATED_AT_KEY
             title = context.getString(R.string.show_updated_at)
             icon = AppCompatResources.getDrawable(context, R.drawable.ic_baseline_access_time_24)
             summary = "Show when the widget was last updated."
+        }
+    }
+
+    private fun buildFullWidthSwitchPref(context: Context): SwitchPreferenceCompat {
+        return SwitchPreferenceCompat(context).apply {
+            key = PREF_FULL_WIDTH_KEY
+            title = context.getString(R.string.full_width)
+            icon = AppCompatResources.getDrawable(context, R.drawable.ic_baseline_view_carousel_24)
+            summary = "By default the widget will only use as much space as needed."
         }
     }
 }
