@@ -35,11 +35,17 @@ class DataUsageWidgetPrefs(private val context: Context, private val appWidgetId
     }
 
     fun backgroundColor(): Int {
-        return getInt(PREF_BACKGROUND_COLOR_KEY, Color.parseColor("#DD34454d"))
+        return getInt(
+            PREF_BACKGROUND_COLOR_KEY + "_" + appWidgetId.toString(),
+            Color.parseColor("#DD34454d")
+        )
     }
 
     fun textColor(): Int {
-        return getInt(PREF_TEXT_COLOR_KEY, Color.parseColor("#3DCADE"))
+        return getInt(
+            PREF_TEXT_COLOR_KEY + "_" + appWidgetId.toString(),
+            Color.parseColor("#3DCADE")
+        )
     }
 
     fun fullWidth(): Boolean {

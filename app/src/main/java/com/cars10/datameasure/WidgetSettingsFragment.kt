@@ -91,7 +91,7 @@ class WidgetSettingsFragment() : PreferenceFragmentCompat() {
 
     private fun buildTextColorPref(context: Context): ColorPickerPreference {
         return ColorPickerPreference(context).apply {
-            key = PREF_TEXT_COLOR_KEY
+            key = PREF_TEXT_COLOR_KEY + "_" + appWidgetId.toString()
             title = context.getString(R.string.text_color)
             icon = AppCompatResources.getDrawable(context, R.drawable.ic_baseline_color_lens_24)
             attachAlphaSlideBar = true
@@ -106,7 +106,7 @@ class WidgetSettingsFragment() : PreferenceFragmentCompat() {
 
     private fun buildBackgroundColorPref(context: Context): ColorPickerPreference {
         return ColorPickerPreference(context).apply {
-            key = PREF_BACKGROUND_COLOR_KEY
+            key = PREF_BACKGROUND_COLOR_KEY + "_" + appWidgetId.toString()
             title = context.getString(R.string.background_color)
             icon = AppCompatResources.getDrawable(context, R.drawable.ic_baseline_color_lens_24)
             attachAlphaSlideBar = true
