@@ -4,7 +4,7 @@
 
     <item
         android:id="@+id/save"
-        android:icon="@drawable/ic_baseline_check_24"
+        android:text="@string/close_config"
         android:title="@string/close_config"
         app:showAsAction="always" />
 </menu>

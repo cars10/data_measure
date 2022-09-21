@@ -12,12 +12,8 @@ class BarChartWidgetConfigureActivity : AppCompatActivity() {
     private lateinit var binding: BarChartWidgetConfigureBinding
 
     private fun saveWidget() {
-        val context = this@BarChartWidgetConfigureActivity
+        renderWidget()
 
-        val appWidgetManager = AppWidgetManager.getInstance(context)
-        updateAppWidget(context, appWidgetManager, appWidgetId)
-
-        // Make sure we pass back the original appWidgetId
         val resultValue = Intent()
         resultValue.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId)
         setResult(RESULT_OK, resultValue)
@@ -54,16 +50,12 @@ class BarChartWidgetConfigureActivity : AppCompatActivity() {
 
         val widgetSettings = WidgetSettingsFragment()
         widgetSettings.appWidgetId = appWidgetId
-        supportFragmentManager
-            .beginTransaction()
-            .replace(R.id.settings_container, widgetSettings)
+        supportFragmentManager.beginTransaction().replace(R.id.settings_container, widgetSettings)
             .commit()
 
         val widgetPreview = BarChartWidgetFragment()
         widgetPreview.appWidgetId = appWidgetId
-        supportFragmentManager
-            .beginTransaction()
-            .replace(R.id.widget_preview, widgetPreview)
+        supportFragmentManager.beginTransaction().replace(R.id.widget_preview, widgetPreview)
             .commit()
 
         // If this activity was started with an intent without an app widget ID, finish with an error.
@@ -71,6 +63,12 @@ class BarChartWidgetConfigureActivity : AppCompatActivity() {
             finish()
             return
         }
+    }
+
+    private fun renderWidget() {
+        val context = this@BarChartWidgetConfigureActivity
+        val appWidgetManager = AppWidgetManager.getInstance(context)
+        updateAppWidget(context, appWidgetManager, appWidgetId)
     }
 
     /** When override this method to fix issues with multiple widgets:
@@ -86,6 +84,7 @@ class BarChartWidgetConfigureActivity : AppCompatActivity() {
      *
      **/
     public override fun onUserLeaveHint() {
+        renderWidget()
         finish()
     }
 }

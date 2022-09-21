@@ -6,7 +6,7 @@
     <string name="permissions_granted">Permissions granted!</string>
     <string name="appwidget_text">500</string>
     <string name="configure_data_plan">Data plan</string>
-    <string name="close_config">Close &amp; reload widget</string>
+    <string name="close_config">Close</string>
     <string name="app_widget_description">This is an app widget description</string>
     <string name="reload">reload</string>
     <string name="zero_bytes">0 B</string>
