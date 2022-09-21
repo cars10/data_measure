@@ -29,6 +29,19 @@ class MainActivity : AppCompatActivity() {
                 result.text = ByteFormatter().humanReadableByteCountBin(totalUsage)
             }.start()
         }
+
+//        val ids = AppWidgetManager.getInstance(this).getAppWidgetIds(
+//            ComponentName(
+//                this,
+//                BarChartWidget::class.java
+//            )
+//        )
+//
+//        Toast.makeText(
+//            this,
+//            "Number of widgets: " + ids.size + ", IDs: " + ids.joinToString(),
+//            Toast.LENGTH_LONG
+//        ).show()
     }
 
     override fun onResume() {

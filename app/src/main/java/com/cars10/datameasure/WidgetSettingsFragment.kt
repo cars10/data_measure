@@ -84,8 +84,8 @@ class WidgetSettingsFragment() : PreferenceFragmentCompat() {
             icon = AppCompatResources.getDrawable(context, R.drawable.ic_baseline_format_size_24)
             min = 4
             showSeekBarValue = true
-            max = 16
-            setDefaultValue(6)
+            max = 20
+            setDefaultValue(8)
         }
     }
 
