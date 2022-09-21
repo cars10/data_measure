@@ -143,6 +143,7 @@ class WidgetSettingsFragment() : PreferenceFragmentCompat() {
             title = context.getString(R.string.full_width)
             icon = AppCompatResources.getDrawable(context, R.drawable.ic_baseline_view_carousel_24)
             summary = "By default the widget will only use as much space as needed."
+            isEnabled = false
         }
     }
 }
