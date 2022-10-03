@@ -9,9 +9,12 @@ import android.os.Bundle
 import android.util.TypedValue
 import android.view.View
 import android.widget.RemoteViews
+import android.widget.Toast
 import com.cars10.datameasure.*
 import java.text.DateFormat
 import java.util.*
+
+private var MANUAL_WIDGET_UPDATE = "manualWidgetUpdate"
 
 class BarChartWidget : AppWidgetProvider() {
     override fun onUpdate(
@@ -33,6 +36,22 @@ class BarChartWidget : AppWidgetProvider() {
     ) {
         val updateViews = RemoteViews(context.packageName, R.layout.bar_chart_widget)
         appWidgetManager.updateAppWidget(appWidgetId, updateViews)
+    }
+
+    override fun onReceive(context: Context?, intent: Intent?) {
+        super.onReceive(context, intent)
+
+        if (intent?.action == MANUAL_WIDGET_UPDATE) {
+            val appWidgetIds = intent.extras?.getIntArray(AppWidgetManager.EXTRA_APPWIDGET_IDS)
+
+            if (appWidgetIds != null && context != null) {
+                val appWidgetManager = AppWidgetManager.getInstance(context)
+                for (appWidgetId in appWidgetIds) {
+                    Toast.makeText(context, "Widget updating...", Toast.LENGTH_SHORT).show()
+                    updateAppWidget(context, appWidgetManager, appWidgetId)
+                }
+            }
+        }
     }
 }
 
@@ -69,17 +88,19 @@ internal fun updateAppWidget(
     val timeString = DateFormat.getTimeInstance(DateFormat.MEDIUM).format(Date())
     views.setTextViewText(R.id.updated_at, timeString)
 
-    views.setOnClickPendingIntent(R.id.widget_inner_layout, triggerReload(context, appWidgetId))
+    views.setOnClickPendingIntent(
+        R.id.widget_inner_layout,
+        manualWidgetUpdateIntent(context, appWidgetId)
+    )
 
     appWidgetManager.updateAppWidget(appWidgetId, views)
 }
 
-fun triggerReload(context: Context, appWidgetId: Int): PendingIntent {
+fun manualWidgetUpdateIntent(context: Context, appWidgetId: Int): PendingIntent {
     val intentUpdate = Intent(context, BarChartWidget::class.java)
-    intentUpdate.action = AppWidgetManager.ACTION_APPWIDGET_UPDATE
+    intentUpdate.action = MANUAL_WIDGET_UPDATE
     val idArray = intArrayOf(appWidgetId)
     intentUpdate.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, idArray)
-//    Toast.makeText(context, "reloaded", Toast.LENGTH_SHORT).show()
     return PendingIntent.getBroadcast(
         context,
         appWidgetId,
