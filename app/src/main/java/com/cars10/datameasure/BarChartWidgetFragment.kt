@@ -4,7 +4,6 @@ import android.content.SharedPreferences.OnSharedPreferenceChangeListener
 import android.os.Bundle
 import android.util.TypedValue
 import android.view.View
-import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.RelativeLayout
 import android.widget.TextView
@@ -55,13 +54,6 @@ class BarChartWidgetFragment : Fragment(R.layout.bar_chart_widget) {
         val progressBar = view.findViewById<ProgressBar>(R.id.progressBar)
         progressBar.progress = (totalUsage / 1000 / 1000).toInt()
         progressBar.max = progressValue
-
-        val reloadButton = view.findViewById<ImageView>(R.id.reload_button)
-        if (widgetPrefs.showReload()) {
-            reloadButton.visibility = View.VISIBLE
-        } else {
-            reloadButton.visibility = View.GONE
-        }
 
         val updatedAt = view.findViewById<TextView>(R.id.updated_at)
         if (widgetPrefs.showUpdatedAt()) {

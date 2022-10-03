@@ -30,7 +30,6 @@ class WidgetSettingsFragment() : PreferenceFragmentCompat() {
 
         val advancedSettingsCat = buildPrefCat(context, "advanced", "Advanced")
         screen.addPreference(advancedSettingsCat)
-        advancedSettingsCat.addPreference(buildShowReloadSwitchPref(context))
         advancedSettingsCat.addPreference(buildShowUpdatedSwitchPref(context))
         advancedSettingsCat.addPreference(buildFullWidthSwitchPref(context))
 
@@ -116,15 +115,6 @@ class WidgetSettingsFragment() : PreferenceFragmentCompat() {
             cornerRadius = 26
             defaultColor = ContextCompat.getColor(context, R.color.widgetDefaultBackgroundColor)
             onInit()
-        }
-    }
-
-    private fun buildShowReloadSwitchPref(context: Context): SwitchPreferenceCompat {
-        return SwitchPreferenceCompat(context).apply {
-            key = PREF_SHOW_RELOAD_KEY
-            title = context.getString(R.string.show_reload_button)
-            icon = AppCompatResources.getDrawable(context, R.drawable.ic_baseline_refresh_24)
-            summary = "Will add a button to manually reload the widget."
         }
     }
 

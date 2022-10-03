@@ -8,7 +8,6 @@
     <string name="configure_data_plan">Data plan</string>
     <string name="close_config">Close</string>
     <string name="app_widget_description">This is an app widget description</string>
-    <string name="reload">reload</string>
     <string name="zero_bytes">0 B</string>
     <string name="last_updated">last_updated</string>
     <string name="data_plan_hint">0</string>
@@ -20,7 +19,6 @@
     </string-array>
     <string name="configure">Configure</string>
     <string name="add_widget">Add widget</string>
-    <string name="show_reload_button">Show reload button</string>
     <string name="show_updated_at">Show last update</string>
     <string name="full_width">Full width</string>
     <string name="settings">Widget settings</string>

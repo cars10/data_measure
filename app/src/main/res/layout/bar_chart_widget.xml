@@ -1,5 +1,4 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/widget_layout"
     style="@style/Widget.DataMeasure.AppWidget.Container"
@@ -31,26 +30,6 @@
                 android:textStyle="bold"
                 tools:text="412 MB"
                 tools:textColor="#3DCADE" />
-
-            <ImageView
-                android:id="@+id/reload_button"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_alignTop="@id/appwidget_text"
-                android:layout_alignBottom="@id/appwidget_text"
-                android:layout_alignParentEnd="false"
-                android:layout_marginStart="8dp"
-                android:layout_toEndOf="@id/appwidget_text"
-                android:background="?android:attr/selectableItemBackground"
-                android:clickable="true"
-                android:contentDescription="@string/reload"
-                android:focusable="true"
-                android:minWidth="0sp"
-                android:minHeight="0sp"
-                android:src="@android:drawable/stat_notify_sync"
-                android:visibility="gone"
-                app:srcCompat="@android:drawable/stat_notify_sync"
-                tools:visibility="visible" />
         </RelativeLayout>
 
         <ProgressBar

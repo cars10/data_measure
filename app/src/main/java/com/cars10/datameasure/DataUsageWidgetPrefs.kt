@@ -6,7 +6,6 @@ import android.graphics.Color
 
 const val PREF_DATAPLAN_KEY = "data_plan"
 const val PREF_DATAPLAN_UNIT_KEY = "data_plan_unit"
-const val PREF_SHOW_RELOAD_KEY = "show_reload_button"
 const val PREF_SHOW_UPDATED_AT_KEY = "show_updated_at"
 const val PREF_FONT_SIZE_KEY = "font_size"
 const val PREF_TEXT_COLOR_KEY = "text_color"
@@ -20,10 +19,6 @@ class DataUsageWidgetPrefs(private val context: Context, private val appWidgetId
 
     fun dataPlanUnit(): String {
         return getString(PREF_DATAPLAN_UNIT_KEY, "MB")
-    }
-
-    fun showReload(): Boolean {
-        return getBoolean(PREF_SHOW_RELOAD_KEY, false)
     }
 
     fun showUpdatedAt(): Boolean {
