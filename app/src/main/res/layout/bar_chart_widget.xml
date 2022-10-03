@@ -14,7 +14,7 @@
         style="@style/Widget.DataMeasure.AppWidget.InnerView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:layout_marginTop="24dp">
+        tools:background="#DD34454d">
 
         <RelativeLayout
             android:id="@+id/information_wrapper"
@@ -29,7 +29,8 @@
                 android:text="@string/zero_bytes"
                 android:textSize="28sp"
                 android:textStyle="bold"
-                tools:text="412 MB" />
+                tools:text="412 MB"
+                tools:textColor="#3DCADE" />
 
             <ImageView
                 android:id="@+id/reload_button"
