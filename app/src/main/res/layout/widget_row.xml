@@ -42,6 +42,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:baselineAlignBottom="false"
+                android:contentDescription="@string/configure_widget"
                 app:srcCompat="@drawable/ic_baseline_settings_24" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>

@@ -8,7 +8,7 @@ import androidx.core.content.ContextCompat
 import androidx.preference.*
 import com.skydoves.colorpickerpreference.ColorPickerPreference
 
-class WidgetSettingsFragment() : PreferenceFragmentCompat() {
+class WidgetSettingsFragment : PreferenceFragmentCompat() {
     var appWidgetId: Int = -1
 
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {

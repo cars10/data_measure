@@ -43,9 +43,9 @@ class DataUsageWidgetPrefs(private val context: Context, private val appWidgetId
         )
     }
 
-    fun fullWidth(): Boolean {
-        return getBoolean(PREF_FULL_WIDTH_KEY, false)
-    }
+//    fun fullWidth(): Boolean {
+//        return getBoolean(PREF_FULL_WIDTH_KEY, false)
+//    }
 
     private fun getPrefs(): SharedPreferences {
         return context.getSharedPreferences(widgetPrefsName(appWidgetId), 0)

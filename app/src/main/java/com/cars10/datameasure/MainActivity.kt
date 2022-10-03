@@ -27,8 +27,8 @@ class WidgetsAdapter(private val context: Context, private val widgetIds: IntArr
     RecyclerView.Adapter<WidgetsAdapter.ViewHolder>() {
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val widgetPreview = itemView.findViewById<FragmentContainerView>(R.id.widget_preview)
-        val card = itemView.findViewById<CardView>(R.id.card_view)
+        val widgetPreview: FragmentContainerView = itemView.findViewById(R.id.widget_preview)
+        val card: CardView = itemView.findViewById(R.id.card_view)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WidgetsAdapter.ViewHolder {

@@ -5,10 +5,11 @@ import java.lang.String.format
 import java.text.CharacterIterator
 import java.text.StringCharacterIterator
 import java.util.*
+import kotlin.math.abs
 
-class ByteFormatter() {
+class ByteFormatter {
     fun humanReadableByteCountBin(bytes: Long): String {
-        val absB = Math.abs(bytes)
+        val absB = abs(bytes)
         if (absB < 1024) {
             return "$bytes B"
         }

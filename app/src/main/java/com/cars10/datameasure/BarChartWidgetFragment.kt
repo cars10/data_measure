@@ -17,10 +17,9 @@ class BarChartWidgetFragment : Fragment(R.layout.bar_chart_widget) {
     private var listener: OnSharedPreferenceChangeListener? = null
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        val view = requireView()
         val preferences = activity?.getSharedPreferences(widgetPrefsName(appWidgetId), 0)
         updatePreview(view)
-        listener = OnSharedPreferenceChangeListener { prefs, key ->
+        listener = OnSharedPreferenceChangeListener { _, _ ->
             updatePreview(view)
         }
         preferences?.registerOnSharedPreferenceChangeListener(listener)
