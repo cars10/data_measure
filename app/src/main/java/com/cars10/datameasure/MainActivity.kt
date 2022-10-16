@@ -103,6 +103,11 @@ class MainActivity : AppCompatActivity() {
         val adapter = WidgetsAdapter(this@MainActivity, ids)
         rvWidgets.adapter = adapter
         rvWidgets.layoutManager = LinearLayoutManager(this)
+
+        if (ids.isNotEmpty()) {
+            val configureText = findViewById<TextView>(R.id.configure_text)
+            configureText.visibility = View.VISIBLE
+        }
     }
 
     private fun setStatusText(granted: Boolean) {
