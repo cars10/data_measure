@@ -2,8 +2,8 @@
     <string name="app_name">Data measure</string>
     <string name="bar_chart_widget">Bar chart</string>
     <string name="button">Grant permissions</string>
-    <string name="permissions_not_granted">Permissions not granted</string>
-    <string name="permissions_granted">Permissions granted, setup is complete.\nConfigure your widgets below.</string>
+    <string name="permissions_not_granted">Data measure needs \"Usage access\" permissions to show your data usage. Please permit usage access:</string>
+    <string name="permissions_granted">You can now use your launcher to add a widget to your homescreen.</string>
     <string name="appwidget_text">500</string>
     <string name="close_config">Close</string>
     <string name="app_widget_description">This is an app widget description</string>
@@ -19,4 +19,6 @@
     <string name="background_color">Background color</string>
     <string name="text_color">Text color</string>
     <string name="configure_widget">Configure widget</string>
+    <string name="setup_text">Setup</string>
+    <string name="setup_done_text">Setup complete!</string>
 </resources>

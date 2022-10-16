@@ -31,7 +31,7 @@ class WidgetSettingsFragment : PreferenceFragmentCompat() {
         val advancedSettingsCat = buildPrefCat(context, "advanced", "Advanced")
         screen.addPreference(advancedSettingsCat)
         advancedSettingsCat.addPreference(buildShowUpdatedSwitchPref(context))
-        advancedSettingsCat.addPreference(buildFullWidthSwitchPref(context))
+//        advancedSettingsCat.addPreference(buildFullWidthSwitchPref(context))
 
         preferenceScreen = screen
     }
@@ -127,13 +127,13 @@ class WidgetSettingsFragment : PreferenceFragmentCompat() {
         }
     }
 
-    private fun buildFullWidthSwitchPref(context: Context): SwitchPreferenceCompat {
-        return SwitchPreferenceCompat(context).apply {
-            key = PREF_FULL_WIDTH_KEY
-            title = context.getString(R.string.full_width)
-            icon = AppCompatResources.getDrawable(context, R.drawable.ic_baseline_view_carousel_24)
-            summary = "By default the widget will only use as much space as needed."
-            isEnabled = false
-        }
-    }
+//    private fun buildFullWidthSwitchPref(context: Context): SwitchPreferenceCompat {
+//        return SwitchPreferenceCompat(context).apply {
+//            key = PREF_FULL_WIDTH_KEY
+//            title = context.getString(R.string.full_width)
+//            icon = AppCompatResources.getDrawable(context, R.drawable.ic_baseline_view_carousel_24)
+//            summary = "By default the widget will only use as much space as needed."
+//            isEnabled = false
+//        }
+//    }
 }

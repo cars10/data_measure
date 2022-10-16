@@ -106,11 +106,14 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setStatusText(granted: Boolean) {
+        val setupText = findViewById<TextView>(R.id.setup_text)
         val statusText = findViewById<TextView>(R.id.permission_status_text)
         if (granted) {
             statusText.text = getString(R.string.permissions_granted)
+            setupText.text = getString(R.string.setup_done_text)
         } else {
             statusText.text = getString(R.string.permissions_not_granted)
+            setupText.text = getString(R.string.setup_text)
         }
     }
 
