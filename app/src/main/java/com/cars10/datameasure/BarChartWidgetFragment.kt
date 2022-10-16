@@ -66,6 +66,7 @@ class BarChartWidgetFragment : Fragment(R.layout.bar_chart_widget) {
 
         val innerLayout = view.findViewById<RelativeLayout>(R.id.widget_inner_layout)
         innerLayout.setBackgroundColor(widgetPrefs.backgroundColor())
+        innerLayout.isClickable = false
         txt.setTextColor(widgetPrefs.textColor())
     }
 }

@@ -5,7 +5,6 @@ import android.appwidget.AppWidgetManager
 import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
-import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
 import android.os.Process
@@ -13,9 +12,9 @@ import android.provider.Settings
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.Toolbar
 import androidx.cardview.widget.CardView
 import androidx.fragment.app.FragmentContainerView
 import androidx.fragment.app.FragmentManager
@@ -57,7 +56,6 @@ class WidgetsAdapter(private val context: Context, private val widgetIds: IntArr
 
             view.context.startActivity(intent)
         }
-
     }
 
     override fun getItemCount(): Int {
@@ -69,27 +67,31 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        val button = findViewById<Button>(R.id.check_permission_button)
+        val granted = getUsageAccessPermission()
+        if (granted) {
+            button.visibility = View.GONE
+        } else {
+            button.visibility = View.VISIBLE
+        }
+        setStatusText(granted)
 
-        val toolbar = findViewById<Toolbar>(R.id.toolbar)
-        toolbar.setTitle(R.string.app_name)
-        setStatusText(getUsageAccessPermission())
-
-        if (getUsageAccessPermission()) {
-            val result = findViewById<TextView>(R.id.result)
-            Thread {
-                val totalUsage = NetworkUsage().summary(
-                    applicationContext, 0, System.currentTimeMillis()
-                )
-
-                result.text = ByteFormatter().humanReadableByteCountBin(totalUsage)
-            }.start()
+        button.setOnClickListener {
+            askUsageAccessPermission()
         }
     }
 
     override fun onResume() {
         super.onResume()
 
-        setStatusText(getUsageAccessPermission())
+        val button = findViewById<Button>(R.id.check_permission_button)
+        val granted = getUsageAccessPermission()
+        if (granted) {
+            button.visibility = View.GONE
+        } else {
+            button.visibility = View.VISIBLE
+        }
+        setStatusText(granted)
 
         val ids = AppWidgetManager.getInstance(this).getAppWidgetIds(
             ComponentName(
@@ -103,21 +105,16 @@ class MainActivity : AppCompatActivity() {
         rvWidgets.layoutManager = LinearLayoutManager(this)
     }
 
-    fun checkPermissionStatus(view: View) {
-        askUsageAccessPermission(view)
-    }
-
     private fun setStatusText(granted: Boolean) {
-        val statusText = findViewById<TextView>(R.id.statusText)
+        val statusText = findViewById<TextView>(R.id.permission_status_text)
         if (granted) {
             statusText.text = getString(R.string.permissions_granted)
-            statusText.setTextColor(Color.GREEN)
         } else {
             statusText.text = getString(R.string.permissions_not_granted)
         }
     }
 
-    private fun askUsageAccessPermission(_view: View) {
+    private fun askUsageAccessPermission() {
         if (!getUsageAccessPermission()) {
             val intent = Intent(Settings.ACTION_USAGE_ACCESS_SETTINGS)
             startActivity(intent)
