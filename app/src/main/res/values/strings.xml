@@ -11,15 +11,23 @@
     <string name="configure_widgets">Configure widgets</string>
     <string name="last_updated">last_updated</string>
     <string-array name="data_plan_sizes">
-        <item>KB</item>
         <item>MB</item>
         <item>GB</item>
     </string-array>
     <string name="show_updated_at">Show last update</string>
+    <string name="show_updated_at_summary">Show when the widget was last updated.</string>
     <string name="full_width">Full width</string>
     <string name="background_color">Background color</string>
     <string name="text_color">Text color</string>
     <string name="configure_widget">Configure widget</string>
     <string name="setup_text">Setup</string>
     <string name="setup_done_text">Setup complete!</string>
+    <string name="basic_settings">Basic settings</string>
+    <string name="design_settings">Design</string>
+    <string name="advanced_settings">Advanced</string>
+    <string name="monthly_data">Monthly data</string>
+    <string name="data_unit">Use MB or GB</string>
+    <string name="font_size">Font size</string>
+    <string name="confirm">Confirm</string>
+    <string name="cancel">Cancel</string>
 </resources>

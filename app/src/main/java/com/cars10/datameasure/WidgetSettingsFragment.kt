@@ -17,18 +17,21 @@ class WidgetSettingsFragment : PreferenceFragmentCompat() {
         val context = preferenceManager.context
         val screen = preferenceManager.createPreferenceScreen(context)
 
-        val basicSettingsCat = buildPrefCat(context, "basic_settings", "Basic settings")
+        val basicSettingsCat =
+            buildPrefCat(context, "basic_settings", context.getString(R.string.basic_settings))
         screen.addPreference(basicSettingsCat)
         basicSettingsCat.addPreference(buildDataPlanEditTextPref(context))
         basicSettingsCat.addPreference(buildDataPlanUnitListPref(context))
 
-        val designSettingsCat = buildPrefCat(context, "design", "Design")
+        val designSettingsCat =
+            buildPrefCat(context, "design", context.getString(R.string.design_settings))
         screen.addPreference(designSettingsCat)
         designSettingsCat.addPreference(buildFontSizeSeekBarPref(context))
         designSettingsCat.addPreference(buildTextColorPref(context))
         designSettingsCat.addPreference(buildBackgroundColorPref(context))
 
-        val advancedSettingsCat = buildPrefCat(context, "advanced", "Advanced")
+        val advancedSettingsCat =
+            buildPrefCat(context, "advanced", context.getString(R.string.advanced_settings))
         screen.addPreference(advancedSettingsCat)
         advancedSettingsCat.addPreference(buildShowUpdatedSwitchPref(context))
 //        advancedSettingsCat.addPreference(buildFullWidthSwitchPref(context))
@@ -37,9 +40,7 @@ class WidgetSettingsFragment : PreferenceFragmentCompat() {
     }
 
     private fun buildPrefCat(
-        context: Context,
-        prefKey: String,
-        prefTitle: String
+        context: Context, prefKey: String, prefTitle: String
     ): PreferenceCategory {
         return PreferenceCategory(context).apply {
             key = prefKey
@@ -50,7 +51,7 @@ class WidgetSettingsFragment : PreferenceFragmentCompat() {
     private fun buildDataPlanEditTextPref(context: Context): EditTextPreference {
         return EditTextPreference(context).apply {
             key = PREF_DATAPLAN_KEY
-            title = "Monthly data"
+            title = context.getString(R.string.monthly_data)
             icon = AppCompatResources.getDrawable(context, R.drawable.ic_baseline_123_24)
             isSingleLineTitle = true
             summaryProvider = EditTextPreference.SimpleSummaryProvider.getInstance()
@@ -67,7 +68,7 @@ class WidgetSettingsFragment : PreferenceFragmentCompat() {
     private fun buildDataPlanUnitListPref(context: Context): ListPreference {
         return ListPreference(context).apply {
             key = PREF_DATAPLAN_UNIT_KEY
-            title = "Set KB/MB/GB"
+            title = context.getString(R.string.data_unit)
             icon = AppCompatResources.getDrawable(context, R.drawable.ic_baseline_list_alt_24)
             entryValues = context.resources.getStringArray(R.array.data_plan_sizes)
             entries = context.resources.getStringArray(R.array.data_plan_sizes)
@@ -79,7 +80,7 @@ class WidgetSettingsFragment : PreferenceFragmentCompat() {
     private fun buildFontSizeSeekBarPref(context: Context): SeekBarPreference {
         return SeekBarPreference(context).apply {
             key = PREF_FONT_SIZE_KEY
-            title = "Font size"
+            title = context.getString(R.string.font_size)
             icon = AppCompatResources.getDrawable(context, R.drawable.ic_baseline_format_size_24)
             min = 4
             showSeekBarValue = true
@@ -95,8 +96,8 @@ class WidgetSettingsFragment : PreferenceFragmentCompat() {
             icon = AppCompatResources.getDrawable(context, R.drawable.ic_baseline_color_lens_24)
             attachAlphaSlideBar = true
             attachBrightnessSlideBar = true
-            positive = "confirm"
-            negative = "cancel"
+            positive = context.getString(R.string.confirm)
+            negative = context.getString(R.string.cancel)
             cornerRadius = 26
             defaultColor = ContextCompat.getColor(context, R.color.widgetDefaultTextColor)
             onInit()
@@ -110,8 +111,8 @@ class WidgetSettingsFragment : PreferenceFragmentCompat() {
             icon = AppCompatResources.getDrawable(context, R.drawable.ic_baseline_color_lens_24)
             attachAlphaSlideBar = true
             attachBrightnessSlideBar = true
-            positive = "confirm"
-            negative = "cancel"
+            positive = context.getString(R.string.confirm)
+            negative = context.getString(R.string.cancel)
             cornerRadius = 26
             defaultColor = ContextCompat.getColor(context, R.color.widgetDefaultBackgroundColor)
             onInit()
@@ -123,7 +124,7 @@ class WidgetSettingsFragment : PreferenceFragmentCompat() {
             key = PREF_SHOW_UPDATED_AT_KEY
             title = context.getString(R.string.show_updated_at)
             icon = AppCompatResources.getDrawable(context, R.drawable.ic_baseline_access_time_24)
-            summary = "Show when the widget was last updated."
+            summary = context.getString(R.string.show_updated_at_summary)
         }
     }
 
