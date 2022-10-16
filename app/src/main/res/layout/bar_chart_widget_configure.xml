@@ -17,20 +17,32 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/card_view"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:layout_marginStart="48dp"
-        android:layout_marginEnd="48dp"
         app:cardCornerRadius="4dp"
-        app:cardElevation="4dp">
+        app:cardElevation="4dp"
+        app:contentPadding="8dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="center"
             android:gravity="center"
-            android:orientation="vertical"
-            android:padding="4dp">
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/widget_preview"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <View
+                android:id="@+id/divider"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginVertical="8dp"
+                android:background="?android:attr/listDivider" />
 
             <androidx.fragment.app.FragmentContainerView
                 android:id="@+id/widget_preview"
@@ -53,7 +65,8 @@
             <androidx.fragment.app.FragmentContainerView
                 android:id="@+id/settings_container"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                tools:layout="@layout/bar_chart_widget" />
         </LinearLayout>
     </ScrollView>
 </LinearLayout>
