@@ -1,11 +1,21 @@
 package com.cars10.datameasure
 
+import android.Manifest
+import android.annotation.SuppressLint
+import android.app.WallpaperManager
 import android.appwidget.AppWidgetManager
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.os.Bundle
+import android.view.View
+import android.widget.ImageView
+import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
 import com.cars10.datameasure.databinding.BarChartWidgetConfigureBinding
 import com.cars10.datameasure.widgets.updateAppWidget
+
+private var STORAGE_PERMISSION_REQUEST = 1337
 
 class BarChartWidgetConfigureActivity : AppCompatActivity() {
     private var appWidgetId = AppWidgetManager.INVALID_APPWIDGET_ID
@@ -58,6 +68,20 @@ class BarChartWidgetConfigureActivity : AppCompatActivity() {
         supportFragmentManager.beginTransaction().replace(R.id.widget_preview, widgetPreview)
             .commit()
 
+        val storagePermission =
+            checkReadExternalStoragePermission() == PackageManager.PERMISSION_GRANTED
+
+        if (storagePermission) {
+            setWidgetPreviewBackgroundImage()
+            setAllowWallpaperPreviewVisibility(false)
+        } else {
+            setAllowWallpaperPreviewVisibility(true)
+            val allowWallpaperPreview = findViewById<LinearLayout>(R.id.allow_wallpaper_preview)
+            allowWallpaperPreview.setOnClickListener { _ ->
+                trySetWidgetPreviewBackground()
+            }
+        }
+
         // If this activity was started with an intent without an app widget ID, finish with an error.
         if (appWidgetId == AppWidgetManager.INVALID_APPWIDGET_ID) {
             finish()
@@ -65,26 +89,64 @@ class BarChartWidgetConfigureActivity : AppCompatActivity() {
         }
     }
 
+    private fun trySetWidgetPreviewBackground() {
+        if (checkReadExternalStoragePermission() == PackageManager.PERMISSION_GRANTED) {
+            val wallpaperManager = WallpaperManager.getInstance(this)
+            val widgetPreviewBackground = findViewById<ImageView>(R.id.widget_preview_background)
+            widgetPreviewBackground.clipToOutline = true
+            widgetPreviewBackground.setImageDrawable(wallpaperManager.drawable)
+        } else {
+            requestReadExternalStoragePermission()
+        }
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int, permissions: Array<String>, grantResult: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResult)
+
+        if (requestCode == STORAGE_PERMISSION_REQUEST) {
+            val granted = grantResult[0] == PackageManager.PERMISSION_GRANTED
+            if (granted) {
+                setWidgetPreviewBackgroundImage()
+                setAllowWallpaperPreviewVisibility(false)
+            }
+        }
+    }
+
+    private fun setAllowWallpaperPreviewVisibility(visible: Boolean) {
+        val allowWallpaperPreview = findViewById<LinearLayout>(R.id.allow_wallpaper_preview)
+        if (visible) {
+            allowWallpaperPreview.visibility = View.VISIBLE
+        } else {
+            allowWallpaperPreview.visibility = View.INVISIBLE
+        }
+    }
+
+    @SuppressLint("MissingPermission")
+    private fun setWidgetPreviewBackgroundImage() {
+        val wallpaperManager = WallpaperManager.getInstance(this)
+        val widgetPreviewBackground = findViewById<ImageView>(R.id.widget_preview_background)
+        widgetPreviewBackground.clipToOutline = true
+        widgetPreviewBackground.setImageDrawable(wallpaperManager.drawable)
+    }
+
+
+    private fun checkReadExternalStoragePermission(): Int {
+        return ActivityCompat.checkSelfPermission(
+            this, Manifest.permission.READ_EXTERNAL_STORAGE
+        )
+    }
+
+    private fun requestReadExternalStoragePermission() {
+        ActivityCompat.requestPermissions(
+            this, arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE), STORAGE_PERMISSION_REQUEST
+        )
+    }
+
     private fun renderWidget() {
         val context = this@BarChartWidgetConfigureActivity
         val appWidgetManager = AppWidgetManager.getInstance(context)
         updateAppWidget(context, appWidgetManager, appWidgetId)
-    }
-
-    /** When override this method to fix issues with multiple widgets:
-     *
-     * - open configuration for widget 1
-     * - press home
-     * - open configuration for widget 2 (this opens the correct config for widget 2)
-     * - press home
-     * - open configuration for widget 1 again
-     * => this opens the configuration for widget 2, despite us setting a different requestCode for the intent
-     *
-     * So we just call finish() in onUserLeaveHint to stop the activity when ever the user presses home.
-     *
-     **/
-    public override fun onUserLeaveHint() {
-        renderWidget()
-        finish()
     }
 }

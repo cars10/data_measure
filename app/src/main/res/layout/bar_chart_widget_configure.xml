@@ -15,13 +15,11 @@
         android:theme="?attr/actionBarTheme" />
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/card_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
         app:cardCornerRadius="4dp"
-        app:cardElevation="4dp"
-        app:contentPadding="8dp">
+        app:cardElevation="4dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -30,27 +28,97 @@
             android:gravity="center"
             android:orientation="vertical">
 
-            <TextView
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/widget_preview"
-                android:textSize="16sp"
-                android:textStyle="bold" />
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:paddingHorizontal="8dp"
+                android:paddingTop="8dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/widget_preview"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1" />
+
+                    <LinearLayout
+                        android:id="@+id/allow_wallpaper_preview"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:clickable="true"
+                        android:foreground="?android:attr/selectableItemBackground"
+                        android:orientation="horizontal"
+                        android:padding="2dp"
+                        android:visibility="invisible"
+                        tools:visibility="visible">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:text="Allow wallpaper preview"
+                            android:textSize="11sp" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="16dp"
+                            android:layout_marginStart="4dp"
+                            android:adjustViewBounds="true"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/ic_baseline_image_24" />
+
+                    </LinearLayout>
+                </LinearLayout>
+
+
+            </LinearLayout>
 
             <View
-                android:id="@+id/divider"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:layout_marginVertical="8dp"
+                android:layout_marginTop="8dp"
                 android:background="?android:attr/listDivider" />
 
-            <androidx.fragment.app.FragmentContainerView
-                android:id="@+id/widget_preview"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                tools:layout="@layout/bar_chart_widget" />
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="160dp"
+                    android:fadeScrollbars="false"
+                    android:scrollbarAlwaysDrawVerticalTrack="true">
+
+                    <ImageView
+                        android:id="@+id/widget_preview_background"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:adjustViewBounds="true"
+                        android:scaleType="centerCrop"
+                        tools:srcCompat="@tools:sample/backgrounds/scenic" />
+
+                </ScrollView>
+
+
+                <androidx.fragment.app.FragmentContainerView
+                    android:id="@+id/widget_preview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    tools:layout="@layout/bar_chart_widget" />
+            </FrameLayout>
         </LinearLayout>
+
     </androidx.cardview.widget.CardView>
 
     <ScrollView
