@@ -41,7 +41,6 @@ class BarChartWidgetConfigureActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.toolbar.apply {
-            setTitle(R.string.app_name)
             inflateMenu(R.menu.bar_chart_widget_configure_menu)
             setOnMenuItemClickListener { item ->
                 if (item.itemId == R.id.save) saveWidget()
