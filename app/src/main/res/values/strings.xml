@@ -31,4 +31,7 @@
     <string name="confirm">Confirm</string>
     <string name="cancel">Cancel</string>
     <string name="widget_preview">Widget preview</string>
+    <string name="show_percentage">Show percentages</string>
+    <string name="show_percentage_summary">Display percentage value instead of absolute number.</string>
+    <string name="data_usage_percentage">%1$s %%</string>
 </resources>

@@ -10,7 +10,7 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import java.text.DateFormat
 import java.util.*
-
+import kotlin.math.ceil
 
 class BarChartWidgetFragment : Fragment(R.layout.bar_chart_widget) {
     var appWidgetId: Int = -1
@@ -36,23 +36,24 @@ class BarChartWidgetFragment : Fragment(R.layout.bar_chart_widget) {
         val activity = requireActivity()
         val widgetPrefs = DataUsageWidgetPrefs(activity, appWidgetId)
 
-        val totalUsage = NetworkUsage().summaryCurrentMonth(activity)
-        val str = ByteFormatter().humanReadableByteCountBin(totalUsage)
+        val dataPlanBytes = widgetPrefs.dataPlanBytes()
+        val totalUsageBytes = NetworkUsage().summaryCurrentMonth(activity)
         val txt = view.findViewById<TextView>(R.id.appwidget_text)
 
-        txt.text = str
+        if (widgetPrefs.showPercentage()) {
+            val perc = (totalUsageBytes.toFloat() / dataPlanBytes.toFloat()) * 100
+            txt.text = getString(R.string.data_usage_percentage, ceil(perc).toInt().toString())
+        } else {
+            txt.text = ByteFormatter().humanReadableByteCountBin(totalUsageBytes)
+        }
         txt.setTextSize(
             TypedValue.COMPLEX_UNIT_SP,
             widgetPrefs.fontSize().toFloat() * 2
         )
 
-        val dataPlan = widgetPrefs.dataPlan().toInt()
-        val dataPlanUnit = widgetPrefs.dataPlanUnit()
-        var progressValue = dataPlan
-        if (dataPlanUnit == "GB") progressValue *= 1000
         val progressBar = view.findViewById<ProgressBar>(R.id.progressBar)
-        progressBar.progress = (totalUsage / 1000 / 1000).toInt()
-        progressBar.max = progressValue
+        progressBar.max = dataPlanBytes
+        progressBar.progress = totalUsageBytes.toInt()
 
         val updatedAt = view.findViewById<TextView>(R.id.updated_at)
         if (widgetPrefs.showUpdatedAt()) {

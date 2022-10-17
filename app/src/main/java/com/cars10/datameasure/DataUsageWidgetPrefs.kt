@@ -10,7 +10,8 @@ const val PREF_SHOW_UPDATED_AT_KEY = "show_updated_at"
 const val PREF_FONT_SIZE_KEY = "font_size"
 const val PREF_TEXT_COLOR_KEY = "text_color"
 const val PREF_BACKGROUND_COLOR_KEY = "background_color"
-const val PREF_FULL_WIDTH_KEY = "full_width"
+const val PREF_SHOW_PERCENTAGE_KEY = "show_percentage"
+// const val PREF_FULL_WIDTH_KEY = "full_width"
 
 class DataUsageWidgetPrefs(private val context: Context, private val appWidgetId: Int) {
     fun dataPlan(): String {
@@ -19,6 +20,18 @@ class DataUsageWidgetPrefs(private val context: Context, private val appWidgetId
 
     fun dataPlanUnit(): String {
         return getString(PREF_DATAPLAN_UNIT_KEY, "MB")
+    }
+
+    fun dataPlanBytes(): Int {
+        var total = dataPlan().toInt()
+        val unit = dataPlanUnit()
+        if (unit == "GB") {
+            total *= 1024 * 1024 * 1024
+        } else if (unit == "MB") {
+            total *= 1024 * 1024
+        }
+
+        return total
     }
 
     fun showUpdatedAt(): Boolean {
@@ -41,6 +54,10 @@ class DataUsageWidgetPrefs(private val context: Context, private val appWidgetId
             PREF_TEXT_COLOR_KEY + "_" + appWidgetId.toString(),
             Color.parseColor("#3DCADE")
         )
+    }
+
+    fun showPercentage(): Boolean {
+        return getBoolean(PREF_SHOW_PERCENTAGE_KEY, false)
     }
 
 //    fun fullWidth(): Boolean {

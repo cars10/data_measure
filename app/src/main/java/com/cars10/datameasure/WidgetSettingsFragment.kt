@@ -26,6 +26,7 @@ class WidgetSettingsFragment : PreferenceFragmentCompat() {
         val designSettingsCat =
             buildPrefCat(context, "design", context.getString(R.string.design_settings))
         screen.addPreference(designSettingsCat)
+        designSettingsCat.addPreference(buildShowPercentageSwitchPref(context))
         designSettingsCat.addPreference(buildFontSizeSeekBarPref(context))
         designSettingsCat.addPreference(buildTextColorPref(context))
         designSettingsCat.addPreference(buildBackgroundColorPref(context))
@@ -76,6 +77,16 @@ class WidgetSettingsFragment : PreferenceFragmentCompat() {
             setDefaultValue("GB")
         }
     }
+
+    private fun buildShowPercentageSwitchPref(context: Context): SwitchPreferenceCompat {
+        return SwitchPreferenceCompat(context).apply {
+            key = PREF_SHOW_PERCENTAGE_KEY
+            title = context.getString(R.string.show_percentage)
+            icon = AppCompatResources.getDrawable(context, R.drawable.ic_baseline_percent_24)
+            summary = context.getString(R.string.show_percentage_summary)
+        }
+    }
+
 
     private fun buildFontSizeSeekBarPref(context: Context): SeekBarPreference {
         return SeekBarPreference(context).apply {

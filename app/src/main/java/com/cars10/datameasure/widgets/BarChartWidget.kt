@@ -13,6 +13,7 @@ import android.widget.Toast
 import com.cars10.datameasure.*
 import java.text.DateFormat
 import java.util.*
+import kotlin.math.ceil
 
 private var MANUAL_WIDGET_UPDATE = "manualWidgetUpdate"
 
@@ -59,21 +60,26 @@ internal fun updateAppWidget(
     context: Context, appWidgetManager: AppWidgetManager, appWidgetId: Int
 ) {
     val widgetPrefs = DataUsageWidgetPrefs(context, appWidgetId)
-    val dataPlan = widgetPrefs.dataPlan().toInt()
-    val dataPlanUnit = widgetPrefs.dataPlanUnit()
     val views = RemoteViews(context.packageName, R.layout.bar_chart_widget)
-    views.setTextViewText(R.id.appwidget_text, "")
 
-    val totalUsage = NetworkUsage().summaryCurrentMonth(context)
-    val str = ByteFormatter().humanReadableByteCountBin(totalUsage)
-    views.setTextViewText(R.id.appwidget_text, str)
+    val dataPlanBytes = widgetPrefs.dataPlanBytes()
+    val totalUsageBytes = NetworkUsage().summaryCurrentMonth(context)
+
+    if (widgetPrefs.showPercentage()) {
+        val perc = (totalUsageBytes.toFloat() / dataPlanBytes.toFloat()) * 100
+        val str = context.getString(R.string.data_usage_percentage, ceil(perc).toInt().toString())
+        views.setTextViewText(R.id.appwidget_text, str)
+    } else {
+        views.setTextViewText(
+            R.id.appwidget_text,
+            ByteFormatter().humanReadableByteCountBin(totalUsageBytes)
+        )
+    }
     views.setTextViewTextSize(
         R.id.appwidget_text, TypedValue.COMPLEX_UNIT_SP, widgetPrefs.fontSize().toFloat() * 2
     )
 
-    var progressValue = dataPlan
-    if (dataPlanUnit == "GB") progressValue *= 1000
-    views.setProgressBar(R.id.progressBar, progressValue, (totalUsage / 1000 / 1000).toInt(), false)
+    views.setProgressBar(R.id.progressBar, dataPlanBytes, totalUsageBytes.toInt(), false)
 
     if (widgetPrefs.showUpdatedAt()) {
         views.setViewVisibility(R.id.updated_at, View.VISIBLE)
