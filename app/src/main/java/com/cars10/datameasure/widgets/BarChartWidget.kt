@@ -65,21 +65,20 @@ internal fun updateAppWidget(
     val dataPlanBytes = widgetPrefs.dataPlanBytes()
     val totalUsageBytes = NetworkUsage().summaryCurrentMonth(context)
 
+    val perc = (totalUsageBytes.toFloat() / dataPlanBytes.toFloat()) * 100
     if (widgetPrefs.showPercentage()) {
-        val perc = (totalUsageBytes.toFloat() / dataPlanBytes.toFloat()) * 100
         val str = context.getString(R.string.data_usage_percentage, ceil(perc).toInt().toString())
         views.setTextViewText(R.id.appwidget_text, str)
     } else {
         views.setTextViewText(
-            R.id.appwidget_text,
-            ByteFormatter().humanReadableByteCountBin(totalUsageBytes)
+            R.id.appwidget_text, ByteFormatter().humanReadableByteCountBin(totalUsageBytes)
         )
     }
     views.setTextViewTextSize(
         R.id.appwidget_text, TypedValue.COMPLEX_UNIT_SP, widgetPrefs.fontSize().toFloat() * 2
     )
 
-    views.setProgressBar(R.id.progressBar, dataPlanBytes, totalUsageBytes.toInt(), false)
+    views.setProgressBar(R.id.progressBar, 100, perc.toInt(), false)
 
     if (widgetPrefs.showUpdatedAt()) {
         views.setViewVisibility(R.id.updated_at, View.VISIBLE)
@@ -95,8 +94,7 @@ internal fun updateAppWidget(
     views.setTextViewText(R.id.updated_at, timeString)
 
     views.setOnClickPendingIntent(
-        R.id.widget_inner_layout,
-        manualWidgetUpdateIntent(context, appWidgetId)
+        R.id.widget_inner_layout, manualWidgetUpdateIntent(context, appWidgetId)
     )
 
     appWidgetManager.updateAppWidget(appWidgetId, views)

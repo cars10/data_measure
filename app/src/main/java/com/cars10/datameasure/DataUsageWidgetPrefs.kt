@@ -22,8 +22,8 @@ class DataUsageWidgetPrefs(private val context: Context, private val appWidgetId
         return getString(PREF_DATAPLAN_UNIT_KEY, "MB")
     }
 
-    fun dataPlanBytes(): Int {
-        var total = dataPlan().toInt()
+    fun dataPlanBytes(): Long {
+        var total = dataPlan().toLong()
         val unit = dataPlanUnit()
         if (unit == "GB") {
             total *= 1024 * 1024 * 1024
