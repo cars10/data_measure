@@ -86,27 +86,28 @@ class MainActivity : AppCompatActivity() {
 
         val button = findViewById<Button>(R.id.check_permission_button)
         val granted = getUsageAccessPermission()
-        if (granted) {
-            button.visibility = View.GONE
-        } else {
-            button.visibility = View.VISIBLE
-        }
         setStatusText(granted)
 
-        val ids = AppWidgetManager.getInstance(this).getAppWidgetIds(
-            ComponentName(
-                this, BarChartWidget::class.java
-            )
-        )
-        ids.sort()
-        val rvWidgets = findViewById<View>(R.id.widget_list) as RecyclerView
-        val adapter = WidgetsAdapter(this@MainActivity, ids)
-        rvWidgets.adapter = adapter
-        rvWidgets.layoutManager = LinearLayoutManager(this)
+        if (granted) {
+            button.visibility = View.GONE
 
-        if (ids.isNotEmpty()) {
-            val configureText = findViewById<TextView>(R.id.configure_text)
-            configureText.visibility = View.VISIBLE
+            val ids = AppWidgetManager.getInstance(this).getAppWidgetIds(
+                ComponentName(
+                    this, BarChartWidget::class.java
+                )
+            )
+            ids.sort()
+            val rvWidgets = findViewById<View>(R.id.widget_list) as RecyclerView
+            val adapter = WidgetsAdapter(this@MainActivity, ids)
+            rvWidgets.adapter = adapter
+            rvWidgets.layoutManager = LinearLayoutManager(this)
+
+            if (ids.isNotEmpty()) {
+                val configureText = findViewById<TextView>(R.id.configure_text)
+                configureText.visibility = View.VISIBLE
+            }
+        } else {
+            button.visibility = View.VISIBLE
         }
     }
 
