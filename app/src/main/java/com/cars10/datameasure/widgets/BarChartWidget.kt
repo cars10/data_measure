@@ -48,7 +48,9 @@ class BarChartWidget : AppWidgetProvider() {
             if (appWidgetIds != null && context != null) {
                 val appWidgetManager = AppWidgetManager.getInstance(context)
                 for (appWidgetId in appWidgetIds) {
-                    Toast.makeText(context, "Widget updating...", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        context, context.getString(R.string.reload_data_usage), Toast.LENGTH_SHORT
+                    ).show()
                     updateAppWidget(context, appWidgetManager, appWidgetId)
                 }
             }
