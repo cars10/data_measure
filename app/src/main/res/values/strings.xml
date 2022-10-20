@@ -4,9 +4,8 @@
     <string name="button">Grant permissions</string>
     <string name="permissions_not_granted">Data measure needs \"Usage access\" permissions to show your data usage. Please permit usage access:</string>
     <string name="permissions_granted">You can now use your launcher to add a widget to your homescreen.</string>
-    <string name="appwidget_text">500</string>
     <string name="close_config">Close</string>
-    <string name="app_widget_description">This is an app widget description</string>
+    <string name="app_widget_description">Bar chart to show used data</string>
     <string name="zero_bytes">0 B</string>
     <string name="configure_widgets">Configure widgets</string>
     <string name="last_updated">last_updated</string>
@@ -35,4 +34,5 @@
     <string name="show_percentage_summary">Display percentage value instead of absolute number.</string>
     <string name="data_usage_percentage">%1$s %%</string>
     <string name="reload_data_usage">Reloading data usage...</string>
+    <string name="allow_wallpaper_preview">Allow wallpaper preview</string>
 </resources>

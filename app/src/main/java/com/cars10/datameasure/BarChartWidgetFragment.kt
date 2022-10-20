@@ -38,7 +38,7 @@ class BarChartWidgetFragment : Fragment(R.layout.bar_chart_widget) {
 
         val dataPlanBytes = widgetPrefs.dataPlanBytes()
         val totalUsageBytes = NetworkUsage().summaryCurrentMonth(activity)
-        val txt = view.findViewById<TextView>(R.id.appwidget_text)
+        val txt = view.findViewById<TextView>(R.id.data_usage_text)
         val perc = (totalUsageBytes.toDouble() / dataPlanBytes.toDouble()) * 100
 
         if (widgetPrefs.showPercentage()) {
@@ -51,7 +51,7 @@ class BarChartWidgetFragment : Fragment(R.layout.bar_chart_widget) {
             widgetPrefs.fontSize().toFloat() * 2
         )
 
-        val progressBar = view.findViewById<ProgressBar>(R.id.progressBar)
+        val progressBar = view.findViewById<ProgressBar>(R.id.progress_bar)
         progressBar.max = 100
         progressBar.progress = perc.toInt()
 

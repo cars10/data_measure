@@ -70,17 +70,17 @@ internal fun updateAppWidget(
     val perc = (totalUsageBytes.toFloat() / dataPlanBytes.toFloat()) * 100
     if (widgetPrefs.showPercentage()) {
         val str = context.getString(R.string.data_usage_percentage, ceil(perc).toInt().toString())
-        views.setTextViewText(R.id.appwidget_text, str)
+        views.setTextViewText(R.id.data_usage_text, str)
     } else {
         views.setTextViewText(
-            R.id.appwidget_text, ByteFormatter().humanReadableByteCountBin(totalUsageBytes)
+            R.id.data_usage_text, ByteFormatter().humanReadableByteCountBin(totalUsageBytes)
         )
     }
     views.setTextViewTextSize(
-        R.id.appwidget_text, TypedValue.COMPLEX_UNIT_SP, widgetPrefs.fontSize().toFloat() * 2
+        R.id.data_usage_text, TypedValue.COMPLEX_UNIT_SP, widgetPrefs.fontSize().toFloat() * 2
     )
 
-    views.setProgressBar(R.id.progressBar, 100, perc.toInt(), false)
+    views.setProgressBar(R.id.progress_bar, 100, perc.toInt(), false)
 
     if (widgetPrefs.showUpdatedAt()) {
         views.setViewVisibility(R.id.updated_at, View.VISIBLE)
@@ -90,7 +90,7 @@ internal fun updateAppWidget(
     views.setInt(
         R.id.widget_inner_layout, "setBackgroundColor", widgetPrefs.backgroundColor()
     )
-    views.setTextColor(R.id.appwidget_text, widgetPrefs.textColor())
+    views.setTextColor(R.id.data_usage_text, widgetPrefs.textColor())
 
     val timeString = DateFormat.getTimeInstance(DateFormat.MEDIUM).format(Date())
     views.setTextViewText(R.id.updated_at, timeString)

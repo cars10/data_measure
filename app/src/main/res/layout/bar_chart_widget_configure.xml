@@ -67,7 +67,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
-                            android:text="Allow wallpaper preview"
+                            android:text="@string/allow_wallpaper_preview"
                             android:textSize="11sp" />
 
                         <ImageView
