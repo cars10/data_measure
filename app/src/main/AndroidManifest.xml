@@ -18,8 +18,18 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.DataMeasure"
         tools:targetApi="31">
+        <activity
+            android:name=".WidgetDetails"
+            android:excludeFromRecents="true"
+            android:exported="false"
+            android:noHistory="true">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+
         <receiver
-            android:name="com.cars10.datameasure.widgets.BarChartWidget"
+            android:name=".widgets.BarChartWidget"
             android:exported="false"
             android:label="@string/bar_chart_widget">
             <intent-filter>
@@ -32,14 +42,14 @@
         </receiver>
 
         <activity
-            android:name="com.cars10.datameasure.BarChartWidgetConfigureActivity"
+            android:name=".BarChartWidgetConfigureActivity"
             android:exported="false">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE" />
             </intent-filter>
         </activity>
         <activity
-            android:name="com.cars10.datameasure.MainActivity"
+            android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

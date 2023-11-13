@@ -95,9 +95,25 @@ internal fun updateAppWidget(
     val timeString = DateFormat.getTimeInstance(DateFormat.MEDIUM).format(Date())
     views.setTextViewText(R.id.updated_at, timeString)
 
-    views.setOnClickPendingIntent(
-        R.id.widget_inner_layout, manualWidgetUpdateIntent(context, appWidgetId)
-    )
+//    views.setOnClickPendingIntent(
+//        R.id.widget_inner_layout, manualWidgetUpdateIntent(context, appWidgetId)
+//    )
+
+
+    val intent = Intent(context, WidgetDetails::class.java)
+    intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId)
+
+    val pendingIntent =
+        PendingIntent.getActivity(
+            context,
+            appWidgetId,
+            intent,
+            PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT
+        )
+    views.setOnClickPendingIntent(R.id.widget_inner_layout, pendingIntent)
+
+
+
 
     appWidgetManager.updateAppWidget(appWidgetId, views)
 }

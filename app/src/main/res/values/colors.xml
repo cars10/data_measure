@@ -5,4 +5,5 @@
     <color name="primaryTextColor">#ffffff</color>
     <color name="widgetDefaultTextColor">#ff3dcade</color>
     <color name="widgetDefaultBackgroundColor">#dd34454d</color>
+    <color name="transparent">#00000000</color>
 </resources>
